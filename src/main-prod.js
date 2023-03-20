@@ -11,10 +11,6 @@ import './assets/css/global.less'
 // 引入字体文件
 import './assets/font/iconfont.css'
 
-// 引入 socket_service
-// import SocketService from './utils/socket_service'
-// SocketService.Instance.connect()
-// Vue.prototype.$socket = SocketService.Instance
 
 // axios 配置接口默认路径
 //axios.defaults.baseURL = 'https://www.bookbook.cc/api/data-view' // 使用接口数据 可把后端仓库拉下来 改成 http://127.0.0.1:8801/api

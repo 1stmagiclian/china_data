@@ -159,6 +159,7 @@ export default {
       // http://101.34.160.195:8888/api/seller
       //const { data: res } = await this.$http.get('/seller')  //发起Ajax请求
 
+      
       const res=[{name:"广州",value:0.91},
                  {name:"杭州",value:0.89},
                  {name:"郑州",value:0.80},
