@@ -8,7 +8,7 @@
 
 ## 说明
 
-如果你觉得本项目对你有帮助的话，请点个 Star 支持一下 🐷(一个赞都没有，太可怜了)
+如果你觉得本项目对你有帮助的话，请点个 Star 支持一下 (一个赞都没有，太可怜了)
 
 在学习该项目的过程中,如果你遇到任何问题都可以联系我,文末有联系方法。
 
@@ -30,7 +30,7 @@
 
 ```js
 // 首先你应当克隆该项目
-git clone https://gitee.com/penggang-home/data-view.git
+git clone  https://github.com/1stmagiclian/china_data.git
 
 // 进入该项目
 cd data-view
@@ -75,17 +75,3 @@ npm run serve
 #### 2.8 地区销量趋势
 
 ![dark](./images/trend.png)
-
-## 四、 联系我
-
-最后，如果你有什么奇怪的想法或者疑惑你都可以联系我，希望我能帮助到你。
-
-- WX：P200048
-
-- QQ：2845486124
-
-- E-Mail：2845486124@qq.com
-
-| QQ                  | WeChat              |
-| ------------------- | ------------------- |
-| ![QQ](./images/qq.jpg) | ![wx](./images/wx.jpg) |
