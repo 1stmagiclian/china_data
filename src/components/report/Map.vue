@@ -5,8 +5,9 @@
 </template>
 
 <script>
-import { getProvinceMapInfo } from '@/utils/map_utils'
+import { getProvinceMapInfo } from '@/utils/map_utils'//中文城市名转成拼音
 import { mapState } from 'vuex'
+import axios from 'axios'
 
 export default {
   name: 'Map',
@@ -46,9 +47,12 @@ export default {
     // })
     // this.$socket.registerCallBack('mapData', this.getData)
   },
+
+
+  //mounted挂载 执行内容 创建实例 请求数据 渲染图表 添加窗口尺寸变化的监听
   mounted() {
     this.initChart()
-    // this.getData()
+    this.getData()
     // this.$socket.send({
     //   action: 'getData',
     //   socketType: 'mapData',
@@ -63,6 +67,8 @@ export default {
     window.removeEventListener('resize', this.screenAdapter)
     // this.$socket.unRegisterCallBack('stockData')
   },
+
+
   methods: {
     // 初始化图表的方法
     async initChart() {
@@ -70,17 +76,25 @@ export default {
       // 获取中国地图的矢量数据： 可以通过发送网络请求获取,static/map/china.json 的数据
       // 由于配置了基础路径，所以不能直接 this.$http.get 来请求 static下的资源
 
-      if (!this.chinaMapData) {
-        const { data: res } = await this.$http.get('/map/china')
-        this.chinaMapData = res
-      }
+      // if (!this.chinaMapData) {
+      //   const { data: res } = await this.$http.get('/map/china')
+      //   this.chinaMapData = res
+      // }
+
+
+      //不通过后台获取地图数据的方式就是axios.get
+      // const ret = await axios.get('http://localhost:8999/static/map/china.json')
+      const ret = await axios.get('http://39.107.97.152:8077/static/map/china.json')
+
+
       // 注册地图数据
-      this.$echarts.registerMap('china', this.chinaMapData)
+      // this.$echarts.registerMap('china', this.chinaMapData)
+      this.$echarts.registerMap('china', ret.data)
 
       // 初始化配置项
       const initOption = {
         title: {
-          text: '▎商家分布',
+          text: '▎城市分布',
           left: 20,
           top: 20,
         },
@@ -109,6 +123,7 @@ export default {
 
       // 进入省份事件函数
       this.chartInstance.on('click', async e => {
+        
         // 通过工具函数拿到点击的地图对应的中文拼音(key),和拼接出需要的文件路径(path)
         const ProvinceInfo = getProvinceMapInfo(e.name)
 
@@ -131,15 +146,77 @@ export default {
         // 赋值给 echarts实例
         this.chartInstance.setOption(changeOption)
       })
+
+
+      this.chartInstance.on('click',arg=>{
+        console.log(arg)
+        if(arg.name=='绵阳'){
+          window.location.href='http://localhost:8999/#/test'
+        }
+      })
+
+
     },
+
+
     // 发送请求，获取数据
     async getData() {
       // http://101.34.160.195:8888/api/map
-      const { data: res } = await this.$http.get('/map')
+      // const { data: res } = await this.$http.get('/map')
+
+      const res =      [
+                          {
+                              "name": "111",
+                              "children": [
+                                  {
+                                      "name":"昆明",
+                                      "value": [102.73, 25.04]
+                                  },
+                                  {
+                                      "name": "武汉",
+                                      "value": [114.31, 30.52]
+                                  }, {
+                                      "name": "深圳",
+                                      "value": [114.07, 22.62]
+                                  }
+                              ]
+                          },
+                          {
+                              "name": "222",
+                              "children": [
+                                  {
+                                      "name": "金华",
+                                      "value": [119.64, 29.12]
+                                  }, {
+                                      "name": "西安",
+                                      "value": [108.95, 34.27]
+                                  }
+                              ]
+                          },
+                          {
+                              "name": "333",
+                              "children": [
+                                  {
+                                      "name": "成都",
+                                      "value": [104.06, 30.67]
+                                  },{
+                                      "name": "绵阳",
+                                      "value": [104.73, 31.48]
+                                  },{
+                                      "name":"鄂尔多斯",
+                                      "value": [109.781327, 39.608266]
+                                  }
+                              ]
+                          }
+                      ]
+
+      console.log(res)
       this.allData = res
 
       this.updateChart()
     },
+
+
     // 更新图表配置项
     updateChart() {
       // 图例的数据
@@ -152,8 +229,10 @@ export default {
         return {
           type: 'effectScatter',
           // 图例的name需要与series的name相同
-          name: item.name,
+          name: item.name,   //黄金用户、白金用户
           data: item.children,
+
+
           // 让散点图使用地图坐标系统
           coordinateSystem: 'geo',
           // 涟漪动画效果配置
@@ -168,6 +247,8 @@ export default {
 
       // 数据配置项
       const dataOption = {
+
+        //左下角的图例效果
         legend: {
           left: '2%',
           bottom: '5%',
@@ -175,10 +256,14 @@ export default {
           orient: 'verticle',
           data: legendArr.reverse(),
         },
-        series: seriesArr,
+        
+        series: seriesArr
       }
+
       this.chartInstance.setOption(dataOption)
     },
+
+
     // 不同分辨率的响应式
     screenAdapter() {
       // 当前比较合适的字体大小
@@ -207,6 +292,7 @@ export default {
       this.chartInstance.setOption(adapterOption)
       this.chartInstance.resize()
     },
+
     // 回到中国地图
     chinaMap() {
       const chinaMapOption = {

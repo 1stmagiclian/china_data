@@ -1,6 +1,6 @@
 <template>
   <div class="com-container">
-    <div class="title" @click="showMenu = !showMenu" :style="comStyle">
+    <!-- <div class="title" @click="showMenu = !showMenu" :style="comStyle">
       <span class="before-icon">▎</span>
       <span>{{ showTitle }}</span>
       <span class="iconfont title-icon" :style="comStyle">&#xe6eb;</span>
@@ -9,7 +9,7 @@
           {{ item.text }}
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="com-chart" ref="trendRef"></div>
   </div>
 </template>
@@ -43,17 +43,17 @@ export default {
   computed: {
     ...mapState(['theme']),
     // 点击过后需要显示的数组
-    selectTypes() {
-      if (!this.allData) return []
-      // 过度掉当前选中的 类别
-      return this.allData.type.filter(item => item.key !== this.activeName)
-    },
-    // 显示的标题
-    showTitle() {
-      if (!this.allData) return ''
-      return this.allData[this.activeName].title
-    },
-    // 设置给标题的样式
+    // selectTypes() {
+    //   if (!this.allData) return []
+    //   // 过度掉当前选中的 类别
+    //   return this.allData.type.filter(item => item.key !== this.activeName)
+    // },
+    // // 显示的标题
+    // showTitle() {
+    //   if (!this.allData) return ''
+    //   return this.allData[this.activeName].title
+    // },
+    // // 设置给标题的样式
     comStyle() {
       return {
         fontSize: this.titleFontSize + 'px',
@@ -97,11 +97,16 @@ export default {
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.trendRef, this.theme)
       const initOption = {
+        title: {
+          text: '▎地区销售排行',
+          left: 20,
+          top: 20
+        },
         grid: {
           left: '3%',
           top: '35%',
           right: '4%',
-          bottom: '1%',
+          bottom: '4%',
           // 把x轴和y轴纳入 grid
           containLabel: true
         },
@@ -129,60 +134,35 @@ export default {
     },
     // 发送请求，获取数据  //websocket： realData 服务端发送给客户端需要的数据
     async getData() {
-      const { data: res } = await this.$http.get('/trend')
+    //  const { data: res } = await this.$http.get('/trend')
+
+      const res=[{name:"商家1",value:11},
+                 {name:"商家2",value:33},
+                 {name:"商家3",value:22}
+      ]
+
       this.allData = res
 
       this.updateChart()
     },
+
     // 更新图表配置项
     updateChart() {
-      // 半透明的颜色值
-      const colorArr1 = ['rgba(11, 168, 44, 0.5)', 'rgba(44, 110, 255, 0.5)', 'rgba(22, 242, 217, 0.5)', 'rgba(254, 33, 30, 0.5)', 'rgba(250, 105, 0, 0.5)']
-      // 全透明的颜色值
-      const colorArr2 = ['rgba(11, 168, 44, 0)', 'rgba(44, 110, 255, 0)', 'rgba(22, 242, 217, 0)', 'rgba(254, 33, 30, 0)', 'rgba(250, 105, 0, 0)']
-
-      // x轴数据
-      const month = this.allData.common.month
-      // y轴数据 series下的数据
-      const valueArr = this.allData[this.activeName].data
-
-      const seriesArr = valueArr.map((item, index) => {
-        return {
-          // 图例的数据需要和series的name匹配
-          name: item.name,
-          type: 'line',
-          data: item.data,
-          // 同个类目轴上系列配置相同的stack值后，后一个系列的值会在前一个系列的值上相加。
-          stack: this.activeName,
-          // 区域填充样式。
-          areaStyle: {
-            color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
-              // 0% 颜色
-              {
-                offset: 0,
-                color: colorArr1[index]
-              },
-              // 100% 颜色
-              {
-                offset: 1,
-                color: colorArr2[index]
-              }
-            ])
-          }
-        }
-      })
-      // 准备图例的数据
-      const legendArr = valueArr.map(item => item.name)
+      
+      // x轴上的数据
+      const trendNames = this.allData.map(item => item.name)
+      // y轴上的数据
+      const trendValues = this.allData.map(item => item.value)
 
       const dataOption = {
         xAxis: {
-          data: month
+          data:trendNames
         },
-        legend: {
-          data: legendArr
+        series:{
+          data:trendValues
         },
-        series: seriesArr
       }
+
       this.chartInstance.setOption(dataOption)
     },
     // 不同分辨率的响应式
@@ -204,30 +184,30 @@ export default {
       this.chartInstance.setOption(adapterOption)
       this.chartInstance.resize()
     },
-    // 当前选中的类型
-    handleSelect(currentType) {
-      this.activeName = currentType
-      this.updateChart()
-    }
+    // // 当前选中的类型
+    // handleSelect(currentTscascsype) {
+    //   this.activeName = currentType
+    //   this.updateChart()
+    // }
   }
 }
 </script>
 
 <style lang="less" scoped>
-.title {
-  position: absolute;
-  left: 50px;
-  top: 20px;
-  z-index: 999;
-  color: white;
-  cursor: pointer;
+// .title {
+//   position: absolute;
+//   left: 50px;
+//   top: 20px;
+//   z-index: 999;
+//   color: white;
+//   cursor: pointer;
 
-  .before-icon {
-    position: absolute;
-    left: -20px;
-  }
-  .title-icon {
-    margin-left: 10px;
-  }
-}
+//   .before-icon {
+//     position: absolute;
+//     left: -20px;
+//   }
+//   .title-icon {
+//     margin-left: 10px;
+//   }
+// }
 </style>

@@ -1,13 +1,15 @@
 <template>
   <div class="screen-container" :style="containerStyle">
+
+
     <header class="screen-header">
       <div>
         <!-- <img :src="headerSrc" alt=""> -->
         <img v-show="theme == 'chalk'" src="~@/assets/images/header_border_dark.png" alt="" />
         <img v-show="theme != 'chalk'" src="~@/assets/images/header_border_light.png" alt="" />
       </div>
-      <span class="logo"> <a :style="titleColor" href="https://www.bookbook.cc" title="去bookbook.cc主站" target="_blank">bookbook.cc</a> </span>
-      <span class="title">电商平台实时监控系统</span>
+      <span class="logo"> <a :style="titleColor" href="http://39.107.97.152:8007/" title="欢迎访问文化计算实验室" target="_blank">欢迎访问文化计算实验室</a> </span>
+      <span class="title" >China — Data</span>
       <div class="title-right">
         <!-- <img :src="themeSrc" class="qiehuan" @click="handleChangeTheme" alt="切换主题" title="切换主题"> -->
         <img v-show="theme == 'chalk'" src="~@/assets/images/qiehuan_dark.png" class="qiehuan" @click="handleChangeTheme" alt="切换主题" title="切换主题" />
@@ -15,56 +17,52 @@
         <div class="datetime">{{ systemDateTime }}</div>
       </div>
     </header>
+
+
+
     <div class="screen-body">
+
+      
       <section class="screen-left">
-        <div id="left-top" :class="{ fullscreen: fullScreenStatus.trend }">
-          <!-- 销量趋势图表 -->
-          <Trend ref="trend"></Trend>
-          <div class="resize">
-            <span @click="changeSize('trend')" :class="['iconfont', fullScreenStatus.trend ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
-          </div>
-        </div>
-        <div id="left-bottom" :class="{ fullscreen: fullScreenStatus.seller }">
-          <!-- 商家销售金额图表 -->
-          <Seller ref="seller"></Seller>
-          <div class="resize">
-            <span @click="changeSize('seller')" :class="['iconfont', fullScreenStatus.seller ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
-          </div>
-        </div>
-      </section>
-      <section class="screen-middle">
-        <div id="middle-top" :class="{ fullscreen: fullScreenStatus.map }">
+
+        <div id="left" :class="{ fullscreen: fullScreenStatus.map }">
           <!-- 商家分布图表 -->
           <single-map ref="map"></single-map>
           <div class="resize">
             <span @click="changeSize('map')" :class="['iconfont', fullScreenStatus.map ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
         </div>
-        <div id="middle-bottom" :class="{ fullscreen: fullScreenStatus.rank }">
+
+
+      </section>
+
+
+      <section class="screen-right">
+
+        <div id="right-top" :class="{ fullscreen: fullScreenStatus.rank }">
           <!-- 地区销量排行图表 -->
           <Rank ref="rank"></Rank>
           <div class="resize">
             <span @click="changeSize('rank')" :class="['iconfont', fullScreenStatus.rank ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
         </div>
-      </section>
-      <section class="screen-right">
-        <div id="right-top" :class="{ fullscreen: fullScreenStatus.hot }">
-          <!-- 热销商品占比图表 -->
-          <Hot ref="hot"></Hot>
+
+
+        <div id="right-bottom" :class="{ fullscreen: fullScreenStatus.seller }">
+          <!-- 商家销售金额图表 -->
+          <Seller ref="seller"></Seller>
           <div class="resize">
-            <span @click="changeSize('hot')" :class="['iconfont', fullScreenStatus.hot ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
+            <span @click="changeSize('seller')" :class="['iconfont', fullScreenStatus.seller ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
         </div>
-        <div id="right-bottom" :class="{ fullscreen: fullScreenStatus.stock }">
-          <!-- 库存销量分析图表 -->
-          <Stock ref="stock"></Stock>
-          <div class="resize">
-            <span @click="changeSize('stock')" :class="['iconfont', fullScreenStatus.stock ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
-          </div>
-        </div>
+
       </section>
+
+
+
     </div>
+
+
   </div>
 </template>
 
@@ -82,6 +80,8 @@ import { getThemeValue } from 'utils/theme_utils'
 
 export default {
   name: 'ScreenPage',
+
+  //组件进行注册
   components: {
     Hot,
     'single-map': Map,
@@ -272,48 +272,47 @@ export default {
   margin-top: 10px;
   .screen-left {
     height: 100%;
-    width: 27.6%;
-    #left-top {
-      height: 53%;
-      position: relative;
-    }
-    #left-bottom {
-      height: 31%;
-      margin-top: 25px;
+    width: 65%;
+    #left {
+      height: 87%;
+      // margin-bottom: 25px;
+      margin-right: 25px;
       position: relative;
     }
   }
-  .screen-middle {
-    height: 100%;
-    width: 41.5%;
-    margin-left: 1.6%;
-    margin-right: 1.6%;
-    #middle-top {
-      width: 100%;
-      height: 56%;
-      position: relative;
-    }
-    #middle-bottom {
-      margin-top: 25px;
-      width: 100%;
-      height: 28%;
-      position: relative;
-    }
-  }
+ 
   .screen-right {
     height: 100%;
-    width: 27.6%;
+    width: 35%;
     #right-top {
-      height: 46%;
+      height: 42%;
       position: relative;
     }
     #right-bottom {
-      height: 38%;
+      height: 42%;
       margin-top: 25px;
       position: relative;
     }
   }
 }
+
+ // .screen-middle {
+  //   height: 100%;
+  //   width: 41.5%;
+  //   margin-left: 1.6%;
+  //   margin-right: 1.6%;
+  //   #middle-top {
+  //     width: 100%;
+  //     height: 56%;
+  //     position: relative;
+  //   }
+  //   #middle-bottom {
+  //     margin-top: 25px;
+  //     width: 100%;
+  //     height: 28%;
+  //     position: relative;
+  //   }
+  // }
 .resize {
   position: absolute;
   right: 20px;

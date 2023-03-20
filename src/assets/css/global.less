@@ -1,11 +1,11 @@
 html,
 body,
-#app {
+#app {  //对应的是最大的app.vue
   width: 100%;
   height: 100%;
   padding: 0;
   margin: 0;
-  overflow: hidden;
+  overflow: hidden;//溢出隐藏的配置
 }
 
 .com-page {
@@ -14,11 +14,11 @@ body,
   overflow: hidden;
 }
 
-.com-container {
+.com-container {//div的父级配置
   width: 100%;
   height: 100%;
   overflow: hidden;
-  position: relative;
+  position: relative;//防止单个组件里面的元素错位
 }
 
 .com-chart {
@@ -27,6 +27,7 @@ body,
   overflow: hidden;
 }
 
+//增加边框的圆角
 canvas{
   border-radius: 20px;
 }

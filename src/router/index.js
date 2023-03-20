@@ -21,6 +21,7 @@ import StockPage from 'views/StockPage'
 
 Vue.use(VueRouter)
 
+//路由规则
 const routes = [{
     path: '/',
     redirect: '/home'
@@ -46,7 +47,7 @@ const routes = [{
     component: HotPage
   },
   {
-    path: '/stockpage',
+    path: '/test',
     component: StockPage
   },
   {

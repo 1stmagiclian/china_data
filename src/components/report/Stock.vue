@@ -20,22 +20,7 @@ export default {
       currentIndex: 1,
       // 定时器标识
       timerId: null,
-      // 圆环坐标
-      centerArr: [
-        ['18%', '40%'],
-        ['50%', '40%'],
-        ['82%', '40%'],
-        ['34%', '75%'],
-        ['66%', '75%'],
-      ],
-      // 圆环渐变色
-      colorArr: [
-        ['#4FF778', '#0BA82C'],
-        ['#E5DD45', '#E8B11C'],
-        ['#E8821C', '#E55445'],
-        ['#5052EE', '#AB6EE5'],
-        ['#23E5E5', '#2E72BF'],
-      ],
+      
     }
   },
   created() {
@@ -79,11 +64,37 @@ export default {
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.stockRef, this.theme)
       const initOption = {
+
         title: {
-          text: '▎库存和销量分析',
+          text: '▎城市雷达图',
           left: 20,
           top: 20,
         },
+        radar: {
+          // shape: 'circle',
+          indicator: [
+            { name: 'col1', max: 20 },
+            { name: 'col2', max: 20 },
+            { name: 'col3', max: 20 },
+            { name: 'col4', max: 20 },
+            { name: 'col5', max: 20 },
+            { name: 'col6', max: 20 },
+            { name: 'col1', max: 20 },
+            { name: 'col2', max: 20 },
+            { name: 'col3', max: 20 },
+            { name: 'col4', max: 20 },
+            { name: 'col5', max: 20 },
+            { name: 'col6', max: 20 },  
+
+          ]
+        },
+
+        series:[
+          {
+            type:'radar'
+          }
+        ]
+        
       }
       this.chartInstance.setOption(initOption)
 
@@ -92,90 +103,51 @@ export default {
       })
       this.chartInstance.on('mouseout', this.startInterval)
     },
+
+
     // 发送请求，获取数据
     async getData() {
-      const { data: res } = await this.$http.get('/stock')
+      // const { data: res } = await this.$http.get('/stock')
+
+      const res=[{name:"广州",value:[17, 8, 15, 8, 15, 6,7, 3, 5, 9, 15, 16]},
+                 {name:"杭州",value:[7, 3, 5, 9, 15, 16,7, 6, 12, 7, 5, 9]},
+                 {name:"郑州",value:[7, 6, 12, 7, 5, 9,17, 8, 15, 8, 15]},                
+      ]
+
       this.allData = res
 
       this.updateChart()
     },
+
+
+
     // 更新图表配置项
     updateChart() {
-      // 需要显示的原始数据   包含0，不好含5
-      const start = (this.currentIndex - 1) * 5
-      const end = start + 5
-      const showData = this.allData.slice(start, end)
-      // 真实显示的数据
-      let seriesArr = showData.map((item, index) => {
-        return {
-          type: 'pie',
-          // 设置成圆环图，外圆半径，内圆半径 在响应式处指定
-          // radius: [120, 100],
+      // 需要显示的原始数据   包含0，不好含
 
-          // 饼图的位置
-          center: this.centerArr[index],
-          // 关闭鼠标移入到饼图的动画效果
-          hoverAnimation: false,
-          // 隐藏指示线条
-          labelLine: {
-            show: false,
-          },
-          label: {
-            position: 'center',
-            color: this.colorArr[index][0],
-          },
-          data: [
-            // 销量
-            {
-              name: item.name + '\n\n' + item.sales,
-              value: item.sales,
-              itemStyle: {
-                // 创建线性渐变的颜色 从下往上
-                color: new this.$echarts.graphic.LinearGradient(0, 1, 0, 0, [
-                  // 0%
-                  { offset: 0, color: this.colorArr[index][0] },
-                  // 100%
-                  { offset: 1, color: this.colorArr[index][1] },
-                ]),
-              },
-              // 内部的提示框 c数值 d百分比
-              tooltip: {
-                formatter: `${item.name} <br/>销量：{c} <br/>占比：{d}%`,
-              },
-            },
-            // 库存
-            {
-              value: item.stock,
-              itemStyle: {
-                color: '#bbb',
-              },
-              // 内部的提示框
-              tooltip: {
-                formatter: `${item.name} <br/>库存：{c} <br>占比：{d}%`,
-              },
-            },
-          ],
-        }
-      })
 
       const dataOption = {
-        tooltip: {
-          // 这里为item 可以为内部的数据开启 单独的 tooltip
-          trigger: 'item',
-        },
-        series: seriesArr,
+        // tooltip: {
+        //   // 这里为item 可以为内部的数据开启 单独的 tooltip
+        //   trigger: 'item',
+        // },
+        series: [
+          {
+            data:this.allData
+          }
+        ]
       }
+
       this.chartInstance.setOption(dataOption)
 
       // 开启定时切换
       this.startInterval()
     },
+
+
     // 不同分辨率的响应式
     screenAdapter() {
       const titleFontSize = (this.$refs.stockRef.offsetWidth / 100) * 3.6
-      // 圆的内院半径和 外圆半径
-      const innerRadius = titleFontSize * 2.8
-      const outerRadius = innerRadius * 1.2
 
       const adapterOption = {
         title: {
@@ -185,41 +157,12 @@ export default {
         },
         series: [
           {
-            type: 'pie',
-            radius: [outerRadius, innerRadius],
-            label: {
-              fontSize: titleFontSize / 1.2,
-            },
-          },
-          {
-            type: 'pie',
-            radius: [outerRadius, innerRadius],
-            label: {
-              fontSize: titleFontSize / 1.2,
-            },
-          },
-          {
-            type: 'pie',
-            radius: [outerRadius, innerRadius],
-            label: {
-              fontSize: titleFontSize / 1.2,
-            },
-          },
-          {
-            type: 'pie',
-            radius: [outerRadius, innerRadius],
-            label: {
-              fontSize: titleFontSize / 1.2,
-            },
-          },
-          {
-            type: 'pie',
-            radius: [outerRadius, innerRadius],
-            label: {
-              fontSize: titleFontSize / 1.2,
-            },
-          },
-        ],
+            barWidth: titleFontSize,
+            itemStyle: {
+              barBorderRadius: [titleFontSize / 2, titleFontSize / 2, 0, 0]
+            }
+          }
+        ]
       }
       this.chartInstance.setOption(adapterOption)
       this.chartInstance.resize()
