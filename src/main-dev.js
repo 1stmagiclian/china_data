@@ -32,6 +32,7 @@ import './assets/lib/theme/westeros'
 
 Vue.config.productionTip = false
 
+
 new Vue({
   router,
   store,
