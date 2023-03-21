@@ -19,7 +19,9 @@ import './assets/font/iconfont.css'
 
 //后期需要对这个url进行修改
 // axios 配置接口默认路径 
-axios.defaults.baseURL = 'https://www.bookbook.cc/api/data-view' // 使用接口数据 可把后端仓库拉下来 改成 http://127.0.0.1:8801/api
+// axios.defaults.baseURL = 'https://www.bookbook.cc/api/data-view' // 使用接口数据 可把后端仓库拉下来 改成 http://127.0.0.1:8801/api
+
+axios.defaults.baseURL = 'http://39.107.97.152:8077/static/' 
 
 Vue.prototype.$http = axios
 
