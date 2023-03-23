@@ -150,7 +150,7 @@ export default {
 
       this.chartInstance.on('click',arg=>{
         //console.log(arg)
-        if(arg.name=='绵阳'){
+        if(arg.name=='济南'){
           window.location.href='http://localhost:8999/#/test'
         }
       })
@@ -178,6 +178,9 @@ export default {
                                   }, {
                                       "name": "深圳",
                                       "value": [114.07, 22.62]
+                                  }, {
+                                      "name": "济南",
+                                      "value": [117,36.65]
                                   }
                               ]
                           },
