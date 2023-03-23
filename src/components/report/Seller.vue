@@ -7,6 +7,7 @@
 <script>
 import { mapState } from 'vuex'
 import { getThemeValue } from 'utils/theme_utils'
+import axios from 'axios'
 
 export default {
   // 商家销售统计
@@ -157,19 +158,23 @@ export default {
     // 获取服务器数据
     async getData() {
       // http://101.34.160.195:8888/api/seller
-      //const { data: res } = await this.$http.get('/seller')  //发起Ajax请求
+      // const { data: res } = await this.$http.get('/seller')  //发起Ajax请求
+      // const res = await this.$http.get('/') 
 
       
-      const res=[{name:"广州",value:0.91},
-                 {name:"杭州",value:0.89},
-                 {name:"郑州",value:0.80},
-                 {name:"武汉",value:0.84},
-                 {name:"西安",value:0.83},
-                 {name:"成都",value:0.88},
-                 {name:"呼和浩特",value:0.67},
-                 {name:"济南",value:0.80},
-                 {name:"苏州",value:0.83},
-      ]
+      // const res=[{"name":"广州","value":0.91},
+      //            {"name":"杭州","value":0.89},
+      //            {"name":"郑州","value":0.80},
+      //            {"name":"武汉","value":0.84},
+      //            {"name":"西安","value":0.83},
+      //            {"name":"成都","value":0.88},
+      //            {"name":"呼和浩特","value":0.67},
+      //            {"name":"济南","value":0.80},
+      //            {"name":"苏州","value":1.99},
+      // ]
+
+      let res = await axios.get('http://10.128.128.228:5000/')
+
 
       console.log(res)
       this.allData = res

@@ -83,8 +83,8 @@ export default {
 
 
       //不通过后台获取地图数据的方式就是axios.get
-      // const ret = await axios.get('http://localhost:8999/static/map/china.json')
-      const ret = await axios.get('http://39.107.97.152:8077/static/map/china.json')
+      const ret = await axios.get('http://localhost:8999/static/map/china.json')
+      // const ret = await axios.get('http://39.107.97.152:8077/static/map/china.json')
 
 
       // 注册地图数据
@@ -149,9 +149,9 @@ export default {
 
 
       this.chartInstance.on('click',arg=>{
-        console.log(arg)
+        //console.log(arg)
         if(arg.name=='绵阳'){
-          window.location.href='http://localhost:8999/#/test'
+          window.location.href='http://localhost:8999/#/test/mianyang'
         }
       })
 
@@ -210,7 +210,7 @@ export default {
                           }
                       ]
 
-      console.log(res)
+      //console.log(res)
       this.allData = res
 
       this.updateChart()

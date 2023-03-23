@@ -36,7 +36,9 @@ const nameChange = {
 }
 
 export function getProvinceMapInfo (arg) {
+  // const path = `/map/province/${nameChange[arg]}`+'.json'
   const path = `/map/province/${nameChange[arg]}`
+  //console.log(path)
   return {
     key: nameChange[arg],
     path: path

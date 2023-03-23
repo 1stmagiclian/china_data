@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapState } from 'vuex'
 
 export default {
@@ -140,6 +141,7 @@ export default {
     async getData() {
       // const { data: res } = await this.$http.get('/rank')
 
+
       const res = [
             [0.25,0.07,'北京'],[0.25,0.17,'昆明'],[0.19,0.11,'成都'],
             [0.26,0.12,'武汉'],[0.42,0.18,'西安'],[0.53,0.59,'天津'],
@@ -157,7 +159,7 @@ export default {
     // 更新图表配置项
     updateChart() {
       
-      console.log(this.allData)
+      //console.log(this.allData)
 
       const dataOption = {
       
