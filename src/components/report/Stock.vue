@@ -79,19 +79,44 @@ export default {
             { name: 'col4', max: 20 },
             { name: 'col5', max: 20 },
             { name: 'col6', max: 20 },
-            { name: 'col1', max: 20 },
-            { name: 'col2', max: 20 },
-            { name: 'col3', max: 20 },
-            { name: 'col4', max: 20 },
-            { name: 'col5', max: 20 },
-            { name: 'col6', max: 20 },  
+            { name: 'col7', max: 20 },
+            { name: 'col8', max: 20 },
+            { name: 'col9', max: 20 },
+            { name: 'col10', max: 20 },
+            { name: 'col11', max: 20 },
+            { name: 'col12', max: 20 },  
 
           ]
         },
 
+        tooltip: {
+          trigger:'item',
+          formatter:(params) => {  // params就是数据，这里可以打印一下看看
+              // return 出去什么，鼠标移入就显示什么,marker就是提示前面蓝色的圆点
+              return `${params.data['name']}&#8194&#8194&#8194&#8194&#8194&#8194&#8194rank</br>
+                      ${params.marker}col1:${params.data['value'][0]} &#8194&#8194 ${params.data['rank'][0]}</br>
+                      ${params.marker}col2:${params.data['value'][1]} &#8194&#8194 ${params.data['rank'][1]}</br>
+                      ${params.marker}col3:${params.data['value'][2]} &#8194&#8194 ${params.data['rank'][2]}</br>
+                      ${params.marker}col4:${params.data['value'][3]} &#8194&#8194 ${params.data['rank'][3]}</br>
+                      ${params.marker}col5:${params.data['value'][4]} &#8194&#8194 ${params.data['rank'][4]}</br>
+                      ${params.marker}col6:${params.data['value'][5]} &#8194&#8194 ${params.data['rank'][5]}</br>
+                      ${params.marker}col7:${params.data['value'][6]} &#8194&#8194 ${params.data['rank'][6]}</br>
+                      ${params.marker}col8:${params.data['value'][7]} &#8194&#8194 ${params.data['rank'][7]}</br>
+                      ${params.marker}col9:${params.data['value'][8]} &#8194&#8194 ${params.data['rank'][8]}</br>
+                      ${params.marker}col10:${params.data['value'][9]} &#8194&#8194 ${params.data['rank'][9]}</br>
+                      ${params.marker}col11:${params.data['value'][10]} &#8194&#8194 ${params.data['rank'][10]}</br>
+                      ${params.marker}col12:${params.data['value'][11]} &#8194&#8194 ${params.data['rank'][11]}</br>`
+          }
+        },
+
         series:[
           {
-            type:'radar'
+            type:'radar',
+            // tooltip: {
+            //   trigger: 'item'
+            // },
+            areaStyle: {},
+            data:this.allData
           }
         ]
         
@@ -109,9 +134,9 @@ export default {
     async getData() {
       // const { data: res } = await this.$http.get('/stock')
 
-      const res=[{name:"广州",value:[17, 8, 15, 8, 15, 6,7, 3, 5, 9, 15, 16]},
-                 {name:"杭州",value:[7, 3, 5, 9, 15, 16,7, 6, 12, 7, 5, 9]},
-                 {name:"郑州",value:[7, 6, 12, 7, 5, 9,17, 8, 15, 8, 15]},                
+      const res=[{name:"济南",value:[17, 8, 15, 8, 15, 6,7, 3, 5, 9, 15, 16],rank:[1,2,3,4,5,6,7,8,9,10,11,12]},
+                //  {name:"杭州",value:[7, 3, 5, 9, 15, 16,7, 6, 12, 7, 5, 9]},
+                //  {name:"郑州",value:[7, 6, 12, 7, 5, 9,17, 8, 15, 8, 15]},                
       ]
 
       this.allData = res
