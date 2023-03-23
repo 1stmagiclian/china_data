@@ -162,18 +162,18 @@ export default {
       // const res = await this.$http.get('/') 
 
       
-      // const res=[{"name":"广州","value":0.91},
-      //            {"name":"杭州","value":0.89},
-      //            {"name":"郑州","value":0.80},
-      //            {"name":"武汉","value":0.84},
-      //            {"name":"西安","value":0.83},
-      //            {"name":"成都","value":0.88},
-      //            {"name":"呼和浩特","value":0.67},
-      //            {"name":"济南","value":0.80},
-      //            {"name":"苏州","value":1.99},
-      // ]
+      const res=[{"name":"广州","value":0.91},
+                 {"name":"杭州","value":0.89},
+                 {"name":"郑州","value":0.80},
+                 {"name":"武汉","value":0.84},
+                 {"name":"西安","value":0.83},
+                 {"name":"成都","value":0.88},
+                 {"name":"呼和浩特","value":0.67},
+                 {"name":"济南","value":0.80},
+                 {"name":"苏州","value":0.99},
+      ]
 
-      let res = await axios.get('http://10.128.128.228:5000/')
+      // let res = await axios.get('http://10.128.128.228:5000/')
 
 
       console.log(res)
