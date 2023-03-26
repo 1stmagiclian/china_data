@@ -173,7 +173,7 @@ export default {
                  {"name":"苏州","value":0.99},
       ]
 
-      // let res = await axios.get('http://10.128.128.228:5000/')
+      // const {data : res} = await axios.get('http://10.128.128.228:5000/')
 
 
       console.log(res)
