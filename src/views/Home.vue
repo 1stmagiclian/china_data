@@ -8,12 +8,12 @@
         <img v-show="theme == 'chalk'" src="~@/assets/images/header_border_dark.png" alt="" />
         <img v-show="theme != 'chalk'" src="~@/assets/images/header_border_light.png" alt="" />
       </div>
-      <span class="logo"> <a :style="titleColor" href="http://39.107.97.152:8007/" title="欢迎访问文化计算实验室" target="_blank">欢迎访问文化计算实验室</a> </span>
+      <!-- <span class="logo"> <a :style="titleColor" href="http://39.107.97.152:8007/" title="欢迎访问文化计算实验室" target="_blank">欢迎访问文化计算实验室</a> </span> -->
       <span class="title">China — Data</span>
       <div class="title-right">
         <!-- <img :src="themeSrc" class="qiehuan" @click="handleChangeTheme" alt="切换主题" title="切换主题"> -->
-        <img v-show="theme == 'chalk'" src="~@/assets/images/qiehuan_dark.png" class="qiehuan" @click="handleChangeTheme" alt="切换主题" title="切换主题" />
-        <img v-show="theme != 'chalk'" src="~@/assets/images/qiehuan_light.png" class="qiehuan" @click="handleChangeTheme" alt="切换主题" title="切换主题" />
+        <!-- <img v-show="theme == 'chalk'" src="~@/assets/images/qiehuan_dark.png" class="qiehuan" @click="handleChangeTheme" alt="切换主题" title="切换主题" />
+        <img v-show="theme != 'chalk'" src="~@/assets/images/qiehuan_light.png" class="qiehuan" @click="handleChangeTheme" alt="切换主题" title="切换主题" /> -->
         <div class="datetime">{{ systemDateTime }}</div>
       </div>
     </header>
