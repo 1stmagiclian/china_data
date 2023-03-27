@@ -46,14 +46,22 @@ const routes = [{
     path: '/hotpage',
     component: HotPage
   },
+
   {
-    path: '/test',
+    path: '/test/:cityName',
     component: StockPage
   },
+  // this.$router.push({
+  //   path:'/test/${cityName}',
+  // }),
+
+
   {
     path: '/rankpage',
     component: RankPage
   }
+
+  
 ]
 
 const router = new VueRouter({

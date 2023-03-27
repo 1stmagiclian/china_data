@@ -151,7 +151,7 @@ export default {
       this.chartInstance.on('click',arg=>{
         //console.log(arg)
         if(arg.name=='济南'){
-          window.location.href='http://localhost:8999/#/test'
+          window.location.href='http://localhost:8999/#/test/jinan'
         }
       })
 
