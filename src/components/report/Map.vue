@@ -93,11 +93,18 @@ export default {
 
       // 初始化配置项
       const initOption = {
+        
+        // backgroundColor:"black",
+
+
         title: {
           text: '▎城市分布',
           left: 20,
           top: 20,
         },
+
+
+
         geo: {
           type: 'map',
           map: 'china',
@@ -105,12 +112,27 @@ export default {
           bottom: '5%',
           //允许拖动及缩放
           roam: true,
-          // zoom: 1.1, //默认缩放比例
+
+
+          // zoom: 1.1, //默认缩放比例61
           itemStyle: {
             // 地图的填充色
-            areaColor: '#2E72BF',
+            // areaColor: '#2E72BF',
             // 省份的边框色
             borderColor: '#333',
+            normal: {
+              areaColor: '#01215c',
+              borderWidth: 1,//设置外层边框
+              borderColor:'#9ffcff',
+            },
+            emphasis: {
+                areaColor: '#01215c'
+            }
+
+
+
+
+
           },
           label: {
             show: true,
@@ -151,7 +173,13 @@ export default {
       this.chartInstance.on('click',arg=>{
         //console.log(arg)
         if(arg.name=='济南'){
-          window.location.href='http://localhost:8999/#/test/jinan'
+          window.location.href='http://localhost:8999/#/test/"济南"'
+        }
+        if(arg.name=='南京'){
+          window.location.href='https://www.baidu.com/'
+        }
+        if(arg.name=='苏州'){
+          window.location.href='http://localhost:8999/#/test/"苏州"'
         }
       })
 
@@ -199,16 +227,13 @@ export default {
                           {
                               "name": "北方城市",
                               "children": [
-                                  // {
-                                  //     "name": "成都",
-                                  //     "value": [104.06, 30.67]
-                                  // },{
-                                  //     "name": "绵阳",
-                                  //     "value": [104.73, 31.48]
-                                  // },{
-                                  //     "name":"鄂尔多斯",
-                                  //     "value": [109.781327, 39.608266]
-                                  // }
+                                  {
+                                      "name": "南京",
+                                      "value": [118.767413, 32.041544]
+                                  },{
+                                      "name": "苏州",
+                                      "value": [120.619585, 31.299379]
+                                  },
                                   {
                                       "name": "济南",
                                       "value": [117,36.65]

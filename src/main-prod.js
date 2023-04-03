@@ -19,7 +19,7 @@ import './assets/font/iconfont.css'
 
 //后期需要对这个url进行修改
 // axios.defaults.baseURL = 'http://39.107.97.152:8077/static/'  //http://39.107.97.152:8077/
-axios.defaults.baseURL = 'http://localhost:8999//static/'
+axios.defaults.baseURL = 'http://localhost:8999/static/'
 Vue.prototype.$http = axios
 
 // 把echarts挂载到 Vue原型上，以便在全局访问，使用时直接this.$echarts

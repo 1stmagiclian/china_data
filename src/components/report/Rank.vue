@@ -8,6 +8,12 @@
 import axios from 'axios'
 import { mapState } from 'vuex'
 
+// var sizeFunction = function (x) {
+//     var y = Math.sqrt(x /55) + 0.1;
+//     return y * 80;
+//   };
+
+
 export default {
   // 地区销量排行
   name: 'Rank',
@@ -69,11 +75,20 @@ export default {
   },
 
   methods: {
+
+
+    // sizeFunction(x) {
+    //     var y = Math.sqrt(x / 55) + 0.1;
+    //     return y * 80;
+    // },
     // 初始化图表的方法
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.rankRef, this.theme)
 
       const initOption = {
+
+        // backgroundColor:"#000",
+
         title: {
           text: '▎散点图',
           left: 20,
@@ -101,10 +116,16 @@ export default {
         },
         //让横纵坐标均显示数值，所以不适用'category'，而使用'value'
         xAxis: {
+          name:"X轴",
+          nameGap: 25,
+          nameLocation: 'middle',
           type: 'value',
           scale: true
         },
         yAxis: {
+          name:"Y轴",
+          nameGap: 25,
+          nameLocation: 'middle',
           value: 'value',
           scale: true
         },
@@ -112,7 +133,7 @@ export default {
         //对展示的数据进行样式设置
         series: [
           {
-            symbolSize: 15,
+            
             type: 'scatter',
             label: {
               formatter: '{@value}',
@@ -143,9 +164,9 @@ export default {
 
 
       const res = [
-            [0.25,0.07,'北京'],[0.25,0.17,'昆明'],[0.19,0.11,'成都'],
-            [0.26,0.12,'武汉'],[0.42,0.18,'西安'],[0.53,0.59,'天津'],
-            [0.52,0.45,'上海'],[0.51,0.47,'深圳'],[0.63,0.74,'南京']
+            [0.25,0.07,'北京',1000000],[0.25,0.17,'昆明',90000],[0.19,0.11,'成都',80000],
+            [0.26,0.12,'武汉',70000],[0.42,0.18,'西安',88000],[0.53,0.59,'天津',77000],
+            [0.52,0.45,'上海',60000],[0.51,0.47,'深圳',99000],[0.63,0.74,'南京',66000]
       ]
 
       this.allData = res
@@ -159,7 +180,7 @@ export default {
     // 更新图表配置项
     updateChart() {
       
-      //console.log(this.allData)
+      console.log(this.allData)
 
       const dataOption = {
       
@@ -173,8 +194,11 @@ export default {
           {
             data: this.allData,
             symbol:
-        'path://M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905 c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478 c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014 C52.216,18.553,51.97,16.611,51.911,16.242z'
-
+        'path://M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905 c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478 c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014 C52.216,18.553,51.97,16.611,51.911,16.242z',
+            // symbolSize:this.sizeFunction(val[2]),
+            symbolSize: function (data) {
+              return Math.sqrt(data[3] / 55) + 0.1 * 80;
+            },
           }
         ]
       }

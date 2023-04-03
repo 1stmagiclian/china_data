@@ -81,6 +81,8 @@ export default {
       this.chartInstance = this.$echarts.init(this.$refs.sellerRef, this.theme)//初始化操作
       // 对图表初始化的配置
       const initOption = {
+
+
         title: {
           text: '▎各地区总得分',
           left: 20,
@@ -170,7 +172,16 @@ export default {
                  {"name":"成都","value":0.88},
                  {"name":"呼和浩特","value":0.67},
                  {"name":"济南","value":0.80},
-                 {"name":"苏州","value":0.99},
+                 {"name":"昆明","value":0.99},
+                 {"name":"兰州","value":0.79},
+                 {"name":"新疆","value":0.79},
+                 {"name":"深圳","value":0.70},
+                 {"name":"大连","value":0.64},
+                 {"name":"北京","value":0.87},
+                 {"name":"绵阳","value":0.78},
+                 {"name":"大理","value":0.77},
+                 {"name":"甘肃","value":0.70},
+                 {"name":"苏州","value":0.79},
       ]
 
       // const {data : res} = await axios.get('http://10.128.128.228:5000/')
@@ -193,8 +204,8 @@ export default {
     // 更新图表
     updateChart() {
       // 动态从数组中取出5条数据
-      const start = (this.curretnPage - 1) * 5 // 0、5、10
-      const end = this.curretnPage * 5  //5、10、15
+      const start = (this.curretnPage - 1) * 10 // 0、10、20
+      const end = this.curretnPage * 10  //10、20、30
       const showData = this.allData.slice(start, end)
 
       // y轴上的数据
@@ -230,13 +241,13 @@ export default {
       if (this.curretnPage > this.totalPage) this.curretnPage = 1
 
       this.updateChart()//更新完currentPage之后需要重新执行updateChart方法
-      }, 5000)
+      }, 5000000)
     },
 
 
     // 当浏览器窗口大小发生变化，完成屏幕适配
     screenAdapter() {
-      const titleFontSize = (this.$refs.sellerRef.offsetWidth / 100) * 3.6
+      const titleFontSize = (this.$refs.sellerRef.offsetWidth / 100) * 2.6
       // 浏览器分辨率大小相关的配置项
       const adapterOption = {
         title: {

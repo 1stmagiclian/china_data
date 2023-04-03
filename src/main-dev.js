@@ -23,7 +23,7 @@ import './assets/font/iconfont.css'
 
 // axios.defaults.baseURL = 'http://39.107.97.152:8077/static/' 
 
-axios.defaults.baseURL = 'http://localhost:8999//static/'
+axios.defaults.baseURL = 'http://localhost:8999/static/'
 
 Vue.prototype.$http = axios
 
