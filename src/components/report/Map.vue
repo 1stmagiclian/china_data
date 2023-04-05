@@ -90,12 +90,12 @@ export default {
       // 注册地图数据
       // this.$echarts.registerMap('china', this.chinaMapData)
       this.$echarts.registerMap('china', ret.data)
+      
 
       // 初始化配置项
       const initOption = {
         
-        // backgroundColor:"black",
-
+        // backgroundColor:"#000",
 
         title: {
           text: '▎城市分布',
@@ -103,9 +103,9 @@ export default {
           top: 20,
         },
 
+        
 
-
-        geo: {
+        geo: {  
           type: 'map',
           map: 'china',
           top: '5%',
@@ -176,7 +176,7 @@ export default {
           window.location.href='http://localhost:8999/#/test/"济南"'
         }
         if(arg.name=='南京'){
-          window.location.href='https://www.baidu.com/'
+          window.location.href='http://localhost:8999/#/test/"南京"'
         }
         if(arg.name=='苏州'){
           window.location.href='http://localhost:8999/#/test/"苏州"'
@@ -213,27 +213,22 @@ export default {
                               // ]
                           },
                           {
-                              // "name": "222",
-                              // "children": [
-                              //     {
-                              //         "name": "金华",
-                              //         "value": [119.64, 29.12]
-                              //     }, {
-                              //         "name": "西安",
-                              //         "value": [108.95, 34.27]
-                              //     }
-                              // ]
+                              "name": "南方城市",
+                              "children": [
+                                  {
+                                      "name": "苏州",
+                                      "value": [120.619585, 31.299379]
+                                  },{
+                                      "name": "南京",
+                                      "value": [118.767413, 32.041544]
+                                  }
+                                  
+                              ]
                           },
                           {
                               "name": "北方城市",
                               "children": [
-                                  {
-                                      "name": "南京",
-                                      "value": [118.767413, 32.041544]
-                                  },{
-                                      "name": "苏州",
-                                      "value": [120.619585, 31.299379]
-                                  },
+                                  
                                   {
                                       "name": "济南",
                                       "value": [117,36.65]
@@ -263,7 +258,6 @@ export default {
           // 图例的name需要与series的name相同
           name: item.name,   //黄金用户、白金用户
           data: item.children,
-
 
           // 让散点图使用地图坐标系统
           coordinateSystem: 'geo',

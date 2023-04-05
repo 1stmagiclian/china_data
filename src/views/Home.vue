@@ -9,7 +9,7 @@
         <img v-show="theme != 'chalk'" src="~@/assets/images/header_border_light.png" alt="" />
       </div>
       <!-- <span class="logo"> <a :style="titleColor" href="http://39.107.97.152:8007/" title="欢迎访问文化计算实验室" target="_blank">欢迎访问文化计算实验室</a> </span> -->
-      <span class="title">China — Data</span>
+      <span class="title">城市软实力指标</span>
       <div class="title-right">
         <!-- <img :src="themeSrc" class="qiehuan" @click="handleChangeTheme" alt="切换主题" title="切换主题"> -->
         <!-- <img v-show="theme == 'chalk'" src="~@/assets/images/qiehuan_dark.png" class="qiehuan" @click="handleChangeTheme" alt="切换主题" title="切换主题" />
@@ -274,6 +274,7 @@ export default {
     height: 100%;
     width: 65%;
     #left {
+      border: 1px solid #33ffff;
       height: 87%;
       // margin-bottom: 25px;
       margin-right: 25px;
@@ -285,10 +286,12 @@ export default {
     height: 100%;
     width: 35%;
     #right-top {
+      border: 1px solid #33ffff;
       height: 42%;
       position: relative;
     }
     #right-bottom {
+      border: 1px solid #33ffff;
       height: 42%;
       margin-top: 25px;
       position: relative;

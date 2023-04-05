@@ -164,35 +164,35 @@ export default {
       // const res = await this.$http.get('/') 
 
       
-      const res=[{"name":"广州","value":0.91},
-                 {"name":"杭州","value":0.89},
-                 {"name":"郑州","value":0.80},
-                 {"name":"武汉","value":0.84},
-                 {"name":"西安","value":0.83},
-                 {"name":"成都","value":0.88},
-                 {"name":"呼和浩特","value":0.67},
-                 {"name":"济南","value":0.80},
-                 {"name":"昆明","value":0.99},
-                 {"name":"兰州","value":0.79},
-                 {"name":"新疆","value":0.79},
-                 {"name":"深圳","value":0.70},
-                 {"name":"大连","value":0.64},
-                 {"name":"北京","value":0.87},
-                 {"name":"绵阳","value":0.78},
-                 {"name":"大理","value":0.77},
-                 {"name":"甘肃","value":0.70},
-                 {"name":"苏州","value":0.79},
-      ]
+      // const res=[{"name":"广州","value":0.91},
+      //            {"name":"杭州","value":0.89},
+      //            {"name":"郑州","value":0.80},
+      //            {"name":"武汉","value":0.84},
+      //            {"name":"西安","value":0.83},
+      //            {"name":"成都","value":0.88},
+      //            {"name":"呼和浩特","value":0.67},
+      //            {"name":"济南","value":0.80},
+      //            {"name":"昆明","value":0.99},
+      //            {"name":"兰州","value":0.79},
+      //            {"name":"新疆","value":0.79},
+      //            {"name":"深圳","value":0.70},
+      //            {"name":"大连","value":0.64},
+      //            {"name":"北京","value":0.87},
+      //            {"name":"绵阳","value":0.78},
+      //            {"name":"大理","value":0.77},
+      //            {"name":"甘肃","value":0.70},
+      //            {"name":"苏州","value":0.79},
+      // ]
 
-      // const {data : res} = await axios.get('http://10.128.128.228:5000/')
+      const {data : res} = await axios.get('http://127.0.0.1:5000/')
 
 
       console.log(res)
       this.allData = res
       // 对数组排序 从小到大进行排序
-      this.allData.sort((a, b) => b.value - a.value)
+      this.allData.sort((a, b) => a.value - b.value)
       // 每五个元素显示一页 计算出总页数【向上取整】
-      this.totalPage = Math.ceil(this.allData.length / 5)
+      this.totalPage = Math.ceil(this.allData.length / 9)
 
       // 开始第一次渲染
       this.updateChart()
@@ -204,8 +204,8 @@ export default {
     // 更新图表
     updateChart() {
       // 动态从数组中取出5条数据
-      const start = (this.curretnPage - 1) * 10 // 0、10、20
-      const end = this.curretnPage * 10  //10、20、30
+      const start = (this.curretnPage - 1) * 9 // 0、10、20
+      const end = this.curretnPage * 9  //10、20、30
       const showData = this.allData.slice(start, end)
 
       // y轴上的数据
@@ -241,18 +241,18 @@ export default {
       if (this.curretnPage > this.totalPage) this.curretnPage = 1
 
       this.updateChart()//更新完currentPage之后需要重新执行updateChart方法
-      }, 5000000)
+      }, 3000)
     },
 
 
     // 当浏览器窗口大小发生变化，完成屏幕适配
     screenAdapter() {
-      const titleFontSize = (this.$refs.sellerRef.offsetWidth / 100) * 2.6
+      const titleFontSize = (this.$refs.sellerRef.offsetWidth / 100) * 3
       // 浏览器分辨率大小相关的配置项
       const adapterOption = {
         title: {
           textStyle: {
-            fontSize: titleFontSize,
+            fontSize: 30,
           },
         },
         tooltip: {
