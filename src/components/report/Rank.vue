@@ -251,7 +251,7 @@ export default {
             symbolSize: function (data) {
               //调节大小
               // return Math.sqrt(data[3] / 15000) + 0.1 * 80;
-              return data[3]/titleFontSzie/10000
+              return data[3]*(titleFontSzie/10000000)
             },
           }
         ]
