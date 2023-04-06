@@ -99,9 +99,19 @@ export default {
           containLabel: true,
         },
         xAxis: {
+          axisLine: {
+              lineStyle: {
+                  color: "#fff",
+              }
+          },
           type: 'value',
         },
         yAxis: {
+          axisLine: {
+              lineStyle: {
+                  color: "#fff",
+              }
+          },
           type: 'category',
         },
 

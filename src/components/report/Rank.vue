@@ -129,6 +129,11 @@ export default {
         },
         //让横纵坐标均显示数值，所以不适用'category'，而使用'value'
         xAxis: {
+          axisLine: {
+              lineStyle: {
+                  color: "#fff",
+              }
+          },
           name:"支撑性得分",
           nameGap: 18,
           nameLocation: 'middle',
@@ -136,6 +141,12 @@ export default {
           scale: true
         },
         yAxis: {
+          axisLine: {
+              lineStyle: {
+                  color: "#fff",
+              }
+          },
+          color:"white",
           name:"效应性得分",
           nameGap: 18,
           nameLocation: 'middle',
