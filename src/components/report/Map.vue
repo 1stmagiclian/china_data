@@ -95,7 +95,7 @@ export default {
       // 初始化配置项
       const initOption = {
         
-        // backgroundColor:"#000",
+        // backgroundColor:"rgb(221, 221, 221)",
 
         title: {
           text: '▎城市分布',
@@ -122,7 +122,7 @@ export default {
             borderColor: '#333',
             normal: {
               areaColor: '#01215c',
-              borderWidth: 1,//设置外层边框
+              borderWidth: 2,//设置外层边框
               borderColor:'#9ffcff',
             },
             emphasis: {

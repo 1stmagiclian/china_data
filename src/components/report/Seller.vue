@@ -82,6 +82,7 @@ export default {
       // 对图表初始化的配置
       const initOption = {
 
+        // backgroundColor:"rgb(221, 221, 221)",
 
         title: {
           text: '▎各地区总得分',
@@ -241,7 +242,7 @@ export default {
       if (this.curretnPage > this.totalPage) this.curretnPage = 1
 
       this.updateChart()//更新完currentPage之后需要重新执行updateChart方法
-      }, 3000)
+      }, 5000)
     },
 
 

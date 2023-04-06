@@ -90,7 +90,7 @@ export default {
       this.chartInstance = this.$echarts.init(this.$refs.stockRef, this.theme)
       const initOption = {
 
-        backgroundColor:"#000",
+        // backgroundColor:"rgb(221, 221, 221)",
 
         title: {
           text: '▎城市雷达图',

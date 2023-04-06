@@ -7,16 +7,16 @@ export default new Vuex.Store({
   state: {
     theme: 'chalk'
   },
-  mutations: {
-    changeTheme(state) {
-      if (state.theme === 'chalk') {
-        // state.theme = 'vintage'
-        state.theme = 'westeros'
-      } else {
-        state.theme = 'chalk'
-      }
-    }
-  },
+  // mutations: {
+  //   changeTheme(state) {
+  //     if (state.theme === 'chalk') {
+  //       // state.theme = 'vintage'
+  //       state.theme = 'westeros'
+  //     } else {
+  //       state.theme = 'chalk'
+  //     }
+  //   }
+  // },
   actions: {
   },
   modules: {

@@ -100,7 +100,7 @@ export default {
 
       const initOption = {
 
-        // backgroundColor:"#ccffff",
+        // backgroundColor:"rgb(221, 221, 221)",
 
         title: {
           text: '▎散点图',
@@ -123,7 +123,7 @@ export default {
           trigger:'item',//item主要用在散点图上面
           formatter:(params) => {  // params就是数据，这里可以打印一下看看
               // return 出去什么，鼠标移入就显示什么,marker就是提示前面蓝色的圆点
-              return `${params.data[2]}</br>${params.marker}横坐标:${params.data[0]}</br>${params.marker}纵坐标:${params.data[1]}`
+              return `${params.data[2]}</br>${params.marker}支撑性得分:${params.data[0]}</br>${params.marker}效应性得分:${params.data[1]}</br>${params.marker}常住人口:${params.data[3]}`
           }
 
         },
