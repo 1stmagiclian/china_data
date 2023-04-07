@@ -274,8 +274,12 @@ export default {
     height: 100%;
     width: 65%;
     #left {
-      // border: 3px solid black;
-      height: 87%;
+      border: 3px solid #9ffcff;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      height: 89%;
       // margin-bottom: 25px;
       margin-right: 25px;
       position: relative;
@@ -286,13 +290,21 @@ export default {
     height: 100%;
     width: 35%;
     #right-top {
-      // border: 3px solid black;
+      border: 3px solid #9ffcff;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
       height: 42%;
       position: relative;
     }
     #right-bottom {
-      // border: 3px solid black;
-      height: 42%;
+      border: 3px solid #9ffcff;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      height: 43%;
       margin-top: 25px;
       position: relative;
     }

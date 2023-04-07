@@ -9,6 +9,9 @@ import { getProvinceMapInfo } from '@/utils/map_utils'//中文城市名转成拼
 import { mapState } from 'vuex'
 import axios from 'axios'
 
+let img =document.createElement('img')
+img.src=require('@/assets/images/map_bg.png')
+
 export default {
   name: 'Map',
   data() {
@@ -95,7 +98,7 @@ export default {
       // 初始化配置项
       const initOption = {
         
-        // backgroundColor:"rgb(221, 221, 221)",
+        backgroundColor:"rgb(22, 21, 34)",
 
         title: {
           text: '▎城市分布',
@@ -120,11 +123,17 @@ export default {
             // areaColor: '#2E72BF',
             // 省份的边框色
             borderColor: '#333',
-            normal: {
-              areaColor: '#01215c',
-              borderWidth: 2,//设置外层边框
-              borderColor:'#9ffcff',
+            // normal: {
+            //   areaColor: '#01215c',
+            //   borderWidth: 2,//设置外层边框
+            //   borderColor:'#9ffcff',
+            // },
+            areaColor:{
+              image:img,
+              repeat:'no-repeat',
             },
+            borderWidth: 1,//设置外层边框
+            borderColor:'#9ffcff',
             emphasis: {
                 areaColor: '#01215c'
             }
