@@ -175,24 +175,24 @@ export default {
       // const res = await this.$http.get('/') 
 
       
-      // const res=[{"name":"广州","value":0.91},
-      //            {"name":"杭州","value":0.89},
-      //            {"name":"郑州","value":0.80},
-      //            {"name":"武汉","value":0.84},
-      //            {"name":"西安","value":0.83},
-      //            {"name":"成都","value":0.88},
-      //            {"name":"呼和浩特","value":0.67},
-      //            {"name":"济南","value":0.80},
-      //            {"name":"昆明","value":0.99},
-      //            {"name":"兰州","value":0.79},
-      //            {"name":"新疆","value":0.79},
-      //            {"name":"深圳","value":0.70},
-      //            {"name":"大连","value":0.64},
-      //            {"name":"北京","value":0.87},
-      //            {"name":"绵阳","value":0.78},
-      //            {"name":"大理","value":0.77},
-      //            {"name":"甘肃","value":0.70},
-      //            {"name":"苏州","value":0.79},
+      // const res=[{"name":"广州","value":0.7},
+      //            {"name":"杭州","value":0.69},
+      //            {"name":"郑州","value":0.45},
+      //            {"name":"武汉","value":0.62},
+      //            {"name":"西安","value":0.53},
+      //            {"name":"成都","value":0.68},
+      //            {"name":"呼和浩特","value":0.27},
+      //            {"name":"济南","value":0.51},
+      //            {"name":"昆明","value":0.4},
+      //            {"name":"兰州","value":0.3},
+      //            {"name":"南京","value":0.64},
+      //            {"name":"深圳","value":0.56},
+      //            {"name":"大连","value":0.39},
+      //            {"name":"贵阳","value":0.32},
+      //            {"name":"太原","value":0.37},
+      //            {"name":"海口","value":0.33},
+      //            {"name":"青岛","value":0.52},
+      //            {"name":"苏州","value":0.59},
       // ]
 
       const {data : res} = await axios.get('http://127.0.0.1:5000/')
@@ -252,7 +252,7 @@ export default {
       if (this.curretnPage > this.totalPage) this.curretnPage = 1
 
       this.updateChart()//更新完currentPage之后需要重新执行updateChart方法
-      }, 5000)
+      }, 3000)
     },
 
 

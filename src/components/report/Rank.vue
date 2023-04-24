@@ -135,7 +135,7 @@ export default {
               }
           },
           name:"支撑性得分",
-          nameGap: 18,
+          nameGap: 21,
           nameLocation: 'middle',
           type: 'value',
           scale: true
