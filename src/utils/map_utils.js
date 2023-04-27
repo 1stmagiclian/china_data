@@ -36,7 +36,8 @@ const nameChange = {
 }
 
 export function getProvinceMapInfo (arg) {
-  const path = `/map/other_province/${nameChange[arg]}`+'.json'
+  //地图获取方式和地址
+  const path = `/map/province/${nameChange[arg]}`+'.json'
   // const path = `/map/province/${nameChange[arg]}`
   //console.log(path)
   return {

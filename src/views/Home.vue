@@ -20,26 +20,9 @@
 
 
 
-    <div class="screen-body">
-
-      
+    <div class="screen-body">    
       <section class="screen-left">
-
-        <div id="left" :class="{ fullscreen: fullScreenStatus.map }">
-          <!-- 商家分布图表 -->
-          <single-map ref="map"></single-map>
-          <div class="resize">
-            <span @click="changeSize('map')" :class="['iconfont', fullScreenStatus.map ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
-          </div>
-        </div>
-
-
-      </section>
-
-
-      <section class="screen-right">
-
-        <div id="right-top" :class="{ fullscreen: fullScreenStatus.rank }">
+        <div id="left-top" :class="{ fullscreen: fullScreenStatus.rank }">
           <!-- 地区销量排行图表 -->
           <Rank ref="rank"></Rank>
           <div class="resize">
@@ -47,22 +30,48 @@
           </div>
         </div>
 
+        <div id="left-bottom" :class="{ fullscreen: fullScreenStatus.hot }">
+          <!-- 地区销量排行图表 -->
+          <Hot ref="hot"></Hot>
+          <div class="resize">
+            <span @click="changeSize('hot')" :class="['iconfont', fullScreenStatus.hot ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
+          </div>
+        </div>
+      </section>
 
-        <div id="right-bottom" :class="{ fullscreen: fullScreenStatus.seller }">
+
+      <section class="screen-middle">
+        <div id="middle-top" :class="{ fullscreen: fullScreenStatus.map }">
+          <!-- 商家分布图表 -->
+          <single-map ref="map"></single-map>
+          <div class="resize">
+            <span @click="changeSize('map')" :class="['iconfont', fullScreenStatus.map ? 'icon-compress-alt' : 
+            'icon-expand-alt']"></span>
+          </div>
+        </div>
+
+        <div id="middle-bottom" :class="{ fullscreen: fullScreenStatus.trend }">
+          <!-- 商家分布图表 -->
+          <Trend ref="trend"></Trend>
+          <div class="resize">
+            <span @click="changeSize('trend')" :class="['iconfont', fullScreenStatus.trend ? 'icon-compress-alt' : 
+            'icon-expand-alt']"></span>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="screen-right">
+      
+        <div id="right" :class="{ fullscreen: fullScreenStatus.seller }">
           <!-- 商家销售金额图表 -->
           <Seller ref="seller"></Seller>
           <div class="resize">
             <span @click="changeSize('seller')" :class="['iconfont', fullScreenStatus.seller ? 'icon-compress-alt' : 'icon-expand-alt']"></span>
           </div>
         </div>
-
       </section>
-
-
-
     </div>
-
-
   </div>
 </template>
 
@@ -271,34 +280,19 @@ export default {
   display: flex;
   margin-top: 10px;
   .screen-left {
-    height: 100%;
-    width: 65%;
-    #left {
+     height: 100%;
+    width: 30%;
+    #left-top {
       border: 3px solid #9ffcff;
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
       border-bottom-left-radius: 20px;
-      height: 89%;
-      // margin-bottom: 25px;
-      margin-right: 25px;
-      position: relative;
-    }
-  }
- 
-  .screen-right {
-    height: 100%;
-    width: 35%;
-    #right-top {
-      border: 3px solid #9ffcff;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
-      border-bottom-left-radius: 20px;
+      margin-bottom: 25px;
       height: 42%;
       position: relative;
     }
-    #right-bottom {
+    #left-bottom {
       border: 3px solid #9ffcff;
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
@@ -309,25 +303,51 @@ export default {
       position: relative;
     }
   }
+ 
+  .screen-right {
+    height: 100%;
+    width: 30%;
+    #right {
+      border: 3px solid #9ffcff;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      height: 89%;
+      position: relative;
+    }
+      }
+  .screen-middle {
+    height: 100%;
+    width: 50%;
+    #middle-top {
+      border: 3px solid #9ffcff;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      height: 55%;
+      margin-bottom: 5px;
+      margin-right: 15px;
+      margin-left: 15px;
+      position: relative;
+    }
+    #middle-bottom {
+      border: 3px solid #9ffcff;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      height: 33%;
+      // margin-bottom: 25px;
+      margin-right: 15px;
+      margin-left: 15px;
+      position: relative;
+    }
+  }
 }
 
- // .screen-middle {
-  //   height: 100%;
-  //   width: 41.5%;
-  //   margin-left: 1.6%;
-  //   margin-right: 1.6%;
-  //   #middle-top {
-  //     width: 100%;
-  //     height: 56%;
-  //     position: relative;
-  //   }
-  //   #middle-bottom {
-  //     margin-top: 25px;
-  //     width: 100%;
-  //     height: 28%;
-  //     position: relative;
-  //   }
-  // }
+
 .resize {
   position: absolute;
   right: 20px;

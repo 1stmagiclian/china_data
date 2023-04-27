@@ -1,25 +1,14 @@
 <template>
   <div class="com-container">
-    <!-- <div class="title" @click="showMenu = !showMenu" :style="comStyle">
-      <span class="before-icon">▎</span>
-      <span>{{ showTitle }}</span>
-      <span class="iconfont title-icon" :style="comStyle">&#xe6eb;</span>
-      <div class="select-con">
-        <div class="select-item" v-show="showMenu" @click.prevent="handleSelect(item.key)" v-for="item in selectTypes" :key="item.key">
-          {{ item.text }}
-        </div>
-      </div>
-    </div> -->
     <div class="com-chart" ref="trendRef"></div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import { getThemeValue } from 'utils/theme_utils'
 
 export default {
-  // 地区销量趋势
+  // 地区销量排行
   name: 'Trend',
   data() {
     return {
@@ -27,39 +16,19 @@ export default {
       chartInstance: null,
       // 从服务器中获取的所有数据
       allData: null,
-      // 是否显示可选项
-      showMenu: false,
-      // 默认显示的数据类型
-      activeName: 'map',
-      // 指明标题的字体大小
-      titleFontSize: 0,
-      value: ''
+      // 柱形图 区域缩放起点值
+      startValue: 0,
+      // 柱形图结 区域缩放终点值
+      endValue: 9,
+      // 定时器
+      timerId: null
     }
   },
   created() {
-    // 在组件创建完成之后，进行回调函数的注册
-    // this.$socket.registerCallBack('trendData', this.getData)
+    // this.$socket.registerCallBack('rankData', this.getData)
   },
   computed: {
-    ...mapState(['theme']),
-    // 点击过后需要显示的数组
-    // selectTypes() {
-    //   if (!this.allData) return []
-    //   // 过度掉当前选中的 类别
-    //   return this.allData.type.filter(item => item.key !== this.activeName)
-    // },
-    // // 显示的标题
-    // showTitle() {
-    //   if (!this.allData) return ''
-    //   return this.allData[this.activeName].title
-    // },
-    // // 设置给标题的样式
-    comStyle() {
-      return {
-        fontSize: this.titleFontSize + 'px',
-        color: getThemeValue(this.theme).titleColor
-      }
-    }
+    ...mapState(['theme'])
   },
   watch: {
     theme() {
@@ -76,138 +45,254 @@ export default {
   mounted() {
     this.initChart()
     this.getData()
-    // websocket 请求数据
-    // this.$socket.send({
-    //   action: 'getData',
-    //   socketType: 'trendData',
-    //   chartName: 'trend',
-    //   value: ''
-    // })
+ 
     window.addEventListener('resize', this.screenAdapter)
     // 主动触发 响应式配置
     this.screenAdapter()
   },
   destroyed() {
     window.removeEventListener('resize', this.screenAdapter)
-    // 销毁注册的事件
-    this.$socket.unRegisterCallBack('trendData')
+    clearInterval(this.timerId)
+    // this.$socket.unRegisterCallBack('rankData')
   },
   methods: {
     // 初始化图表的方法
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.trendRef, this.theme)
+
       const initOption = {
         title: {
-          text: '▎地区销售排行',
+          text: '▎城市软实力指标排行',
           left: 20,
           top: 20
         },
         grid: {
-          left: '3%',
-          top: '35%',
-          right: '4%',
-          bottom: '4%',
+          top: '40%',
+          left: '5%',
+          right: '5%',
+          bottom: '5%',
           // 把x轴和y轴纳入 grid
           containLabel: true
         },
-        // 工具提示
         tooltip: {
-          // 当鼠标移入坐标轴的显示提示
-          trigger: 'axis'
-        },
-        legend: {
-          left: 'center',
-          top: '18%',
-          // 图例的icon类型
-          icon: 'circle'
+          show: true
         },
         xAxis: {
-          type: 'category',
-          // 紧挨边缘
-          boundaryGap: false
+          type: 'category'
         },
         yAxis: {
-          type: 'value'
-        }
+          value: 'value'
+        },
+        series: [
+          {
+            type: 'bar',
+            label: {
+              show: true,
+              position: 'top',
+              color: 'white',
+              rotate: 30
+            }
+          }
+        ]
       }
       this.chartInstance.setOption(initOption)
+
+      // 鼠标经过关闭 动画效果
+      this.chartInstance.on('mouseover', () => {
+        clearInterval(this.timerId)
+      })
+      // 鼠标离开 开启动画效果
+      this.chartInstance.on('mouseout', () => {
+        this.startInterval()
+      })
     },
-    // 发送请求，获取数据  //websocket： realData 服务端发送给客户端需要的数据
+    // 发送请求，获取数据
     async getData() {
-    //  const { data: res } = await this.$http.get('/trend')
-
-      const res=[{name:"商家1",value:11},
-                 {name:"商家2",value:33},
-                 {name:"商家3",value:22}
-      ]
-
+      const res = [
+          {
+            "name": "广东",
+            "value": 230
+          },
+          {
+            "name": "福建",
+            "value": 214
+          },
+          {
+            "name": "浙江",
+            "value": 203
+          },
+          {
+            "name": "上海",
+            "value": 310
+          },
+          {
+            "name": "北京",
+            "value": 289
+          },
+          {
+            "name": "江苏",
+            "value": 207
+          },
+          {
+            "name": "四川",
+            "value": 189
+          },
+          {
+            "name": "重庆",
+            "value": 195
+          },
+          {
+            "name": "陕西",
+            "value": 160
+          },
+          {
+            "name": "湖南",
+            "value": 140
+          },
+          {
+            "name": "河北",
+            "value": 170
+          },
+          {
+            "name": "辽宁",
+            "value": 106
+          },
+          {
+            "name": "湖北",
+            "value": 120
+          },
+          {
+            "name": "江西",
+            "value": 99
+          },
+          {
+            "name": "天津",
+            "value": 107
+          },
+          {
+            "name": "吉林",
+            "value": 143
+          },
+          {
+            "name": "青海",
+            "value": 65
+          },
+          {
+            "name": "山东",
+            "value": 166
+          },
+          {
+            "name": "山西",
+            "value": 134
+          },
+          {
+            "name": "云南",
+            "value": 87
+          },
+          {
+            "name": "安徽",
+            "value": 79
+          }
+        ]
       this.allData = res
+      // 对数据进行排序(大到小)
+      this.allData.sort((a, b) => b.value - a.value)
 
       this.updateChart()
+      // 开始自动切换
+      this.startInterval()
     },
-
     // 更新图表配置项
     updateChart() {
-      
-      // x轴上的数据
-      const trendNames = this.allData.map(item => item.name)
-      // y轴上的数据
-      const trendValues = this.allData.map(item => item.value)
+      // 渐变色数组
+      const colorArr = [
+        ['#0BA82C', '#4FF778'],
+        ['#2E72BF', '#23E5E5'],
+        ['#5052EE', '#AB6EE5']
+      ]
+    
+      // 所有省份组成的数组
+      const provinceInfo = this.allData.map(item => item.name)
+      // 所有省份对应的销售金额
+      const valueArr = this.allData.map(item => item.value)
 
       const dataOption = {
         xAxis: {
-          data:trendNames
+          data: provinceInfo
         },
-        series:{
-          data:trendValues
+        dataZoom: {
+          // 区域缩放组件
+          show: false,
+          startValue: this.startValue,
+          endValue: this.endValue
         },
-      }
+        series: [
+          {
+            data: valueArr,
+            itemStyle: {
+              color: arg => {
+                let targetColorArr = null
 
+                if (arg.value > 300) {
+                  targetColorArr = colorArr[0]
+                } else if (arg.value > 200) {
+                  targetColorArr = colorArr[1]
+                } else {
+                  targetColorArr = colorArr[2]
+                }
+
+                return new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  // 0%
+                  { offset: 0, color: targetColorArr[0] },
+                  // 100%
+                  { offset: 1, color: targetColorArr[1] }
+                ])
+              }
+            }
+          }
+        ]
+      }
       this.chartInstance.setOption(dataOption)
     },
-    // 不同分辨率的响应式
+    // 根据图标容器的宽度 计算各属性、标签、元素的大小
     screenAdapter() {
-      // 测试算出来的 合适的字体大小
-      this.titleFontSize = (this.$refs.trendRef.offsetWidth / 100) * 3.6
+      const titleFontSzie = (this.$refs.trendRef.offsetWidth / 100) * 3.6
 
       const adapterOption = {
-        legend: {
-          itemWidth: this.titleFontSize,
-          itemHeight: this.titleFontSize,
-          // 间距
-          itemGap: this.titleFontSize,
+        title: {
           textStyle: {
-            fontSize: this.titleFontSize / 1.3
+            fontSize: titleFontSzie
           }
-        }
+        },
+        series: [
+          {
+            barWidth: titleFontSzie,
+            itemStyle: {
+              barBorderRadius: [titleFontSzie / 2, titleFontSzie / 2, 0, 0]
+            }
+          }
+        ]
       }
       this.chartInstance.setOption(adapterOption)
       this.chartInstance.resize()
     },
-    // // 当前选中的类型
-    // handleSelect(currentTscascsype) {
-    //   this.activeName = currentType
-    //   this.updateChart()
-    // }
+    // 改变柱形图 区域缩放起始与终点值的函数
+    startInterval() {
+      // 如果存在则关闭
+      this.timerId && clearInterval(this.timerId)
+
+      this.timerId = setInterval(() => {
+        this.startValue++
+        this.endValue++
+        if (this.endValue > this.allData.length - 1) {
+          this.startValue = 0
+          this.endValue = 9
+        }
+        this.updateChart()
+      }, 2000)
+    }
   }
 }
 </script>
 
-<style lang="less" scoped>
-// .title {
-//   position: absolute;
-//   left: 50px;
-//   top: 20px;
-//   z-index: 999;
-//   color: white;
-//   cursor: pointer;
-
-//   .before-icon {
-//     position: absolute;
-//     left: -20px;
-//   }
-//   .title-icon {
-//     margin-left: 10px;
-//   }
-// }
-</style>
+<style lang="less" scoped></style>

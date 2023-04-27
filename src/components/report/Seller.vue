@@ -91,7 +91,7 @@ export default {
         },
         //柱状图坐标轴在页面的位置
         grid: {
-          top: '20%',
+          top: '10%',
           left: '3%',
           right: '6%',
           bottom: '3%',
@@ -215,9 +215,11 @@ export default {
     // 更新图表
     updateChart() {
       // 动态从数组中取出5条数据
-      const start = (this.curretnPage - 1) * 9 // 0、10、20
-      const end = this.curretnPage * 9  //10、20、30
-      const showData = this.allData.slice(start, end)
+      // const start = (this.curretnPage - 1) * 33 // 0、10、20
+      // const end = this.curretnPage * 33  //10、20、30
+      // const showData = this.allData.slice(start, end)
+
+      const showData = this.allData
 
       // y轴上的数据
       const sellerNames = showData.map(item => item.name)
@@ -252,7 +254,7 @@ export default {
       if (this.curretnPage > this.totalPage) this.curretnPage = 1
 
       this.updateChart()//更新完currentPage之后需要重新执行updateChart方法
-      }, 3000)
+      }, 5000)
     },
 
 
@@ -269,13 +271,13 @@ export default {
         tooltip: {
           axisPointer: {
             lineStyle: {
-              width: titleFontSize,
+              width: titleFontSize*0.3,
             },
           },
         },
         series: [
           {
-            barWidth: titleFontSize,//柱形图的宽度
+            barWidth: titleFontSize*0.3,//柱形图的宽度
             itemStyle: {
               barBorderRadius: [0, titleFontSize / 2, titleFontSize / 2, 0],  //圆柱形的半圆弧度角
             },
