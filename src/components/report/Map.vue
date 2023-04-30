@@ -134,17 +134,33 @@ export default {
             },
             borderWidth: 1,//设置外层边框
             borderColor:'#9ffcff',
+            shadowColor: "#9ffcff", // 阴影颜色
+            shadowOffsetX: -2, // 阴影水平方向上的偏移距离
+            shadowOffsetY: 2, // 阴影垂直方向上的偏移距离
+            shadowBlur: 10, // 文字块的背景阴影长度
+
             emphasis: {
                 areaColor: '#01215c'
             }
 
-
-
-
-
           },
+
+          emphasis: {
+              itemStyle: {
+                  areaColor:'red'
+              },
+              label:{
+                  show:false
+              }
+          },
+
+
+
+
+
           label: {
             show: true,
+            offset:[0,-25],
             color: 'white',
             formatter: `{a}`,
           },

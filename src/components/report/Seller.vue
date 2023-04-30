@@ -147,9 +147,9 @@ export default {
               // 指明方向(第四象限坐标轴),不同百分比之下颜色的值
               color: new this.$echarts.graphic.LinearGradient(0, 0, 1, 0, [  //0010表示从左往右的方向
                 // 0% 状态时的颜色
-                { offset: 0, color: '#5052EE' },
+                { offset: 0, color: '#2E72BF' }, //#5052EE
                 // 100% 的颜色
-                { offset: 1, color: '#AB6EE5' },
+                { offset: 1, color: '#23E5E5' },//#AB6EE5
               ]),
             },
           },

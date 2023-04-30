@@ -1,8 +1,11 @@
 <template>
   <div class="com-container">
-    <div class="com-chart" ref="stockRef"></div>
+    <!-- <button @click="gotolink" class="btn btn-success">返回</button> -->
+    <div class="com-chart" ref="stockRef">
+      <!-- <button @click="gotolink" class="btn btn-success">返回</button> -->
+    </div>
   </div>
-</template>
+</template>   
 
 <script>
 import { mapState } from 'vuex'
@@ -70,12 +73,18 @@ export default {
 
   methods: {
 
+    gotolink(){
+
+      //点击跳转至上次浏览页面
+      this.$router.go(-1)
+    },
+
     //雷达图中鼠标浮现的空格样式调整：数值和rank之间的空格数
     getKonggenum(s){
       // let len = s.length
       // console.log(len)
       // if(len==4){ //0.22
-      //   return '&#8194&#8194&#8194&#8194&#8194'
+      //   return '&#8194&#8194&#8194&#8194&#8194'......................
       // }else if(len==3){  //0.2
       //   return '&#8194&#8194&#8194&#8194&#8194&#8194'
       // }else{ //1
@@ -104,6 +113,32 @@ export default {
             },
         },
         
+
+        toolbox:{
+
+          top: "5%",
+          right: "5%",
+          iconStyle: {
+            borderColor: "white",  // 图标默认颜色
+          },
+          emphasis: {
+            iconStyle: {
+              borderColor: "#54C3F1",  // 图标hover颜色
+            },
+          },
+          itemSize: 50, // 设置图标大小
+          feature: {  
+            myTool1: {  
+                show: true,  
+                title: '返回',  
+                icon: 'path://"M742.4 0h-358.4C199.68 0 51.2 148.48 51.2 332.8v358.4C51.2 875.52 199.68 1024 384 1024h358.4C926.72 1024 1075.2 875.52 1075.2 691.2v-358.4C1075.2 148.48 926.72 0 742.4 0z m-83.626667 863.573333H296.96c-20.48 0-37.546667-10.24-37.546667-30.72 0-20.48 17.066667-27.306667 37.546667-27.306666h360.106667c92.16 0 192.853333-117.76 192.853333-209.92s-100.693333-197.973333-192.853333-197.973334H317.44l100.693333 93.866667c15.36 15.36 30.72 39.253333 15.36 54.613333-15.36 15.36-35.84 15.36-49.493333 0l-155.306667-157.013333c-11.946667-11.946667-11.946667-30.72-1.706666-42.666667l155.306666-158.72c15.36-15.36 35.84-15.36 49.493334 0 15.36 15.36 0 39.253333-15.36 54.613334L319.146667 341.333333h339.626666c136.533333 0 247.466667 119.466667 247.466667 254.293334 0 138.24-110.933333 267.946667-247.466667 267.946666z',  
+                onclick: function (){  
+                  window.location.href='http://localhost:8999/#/home'
+                }  
+            },  
+        }  
+        },
+
         radar: {
           // shape: 'circle',
           indicator: [
