@@ -97,8 +97,19 @@ export default {
 
       // 初始化配置项
       const initOption = {
-        
-        backgroundColor:"rgb(22, 21, 34)",
+        backgroundColor:"rgb(22, 21, 34,0.5)",
+        // backgroundColor:{
+        //   type: 'radial',
+        //   x: 0.5,
+        //   y: 0.5,
+        //   r: 0.5,
+        //   colorStops: [{
+        //       offset: 0, color: 'rgb(0, 0, 255)' // 0% 处的颜色
+        //   }, {
+        //       offset: 1, color: 'rgb(22, 21, 34)' // 100% 处的颜色
+        //   }],
+        //   global: false // 缺省为 false
+        // },  
 
         title: {
           text: '▎城市分布',
