@@ -118,50 +118,62 @@ export default {
 
 
           // zoom: 1.1, //默认缩放比例61
-          itemStyle: {
-            // 地图的填充色
-            // areaColor: '#2E72BF',
-            // 省份的边框色
-            borderColor: '#333',
+          itemStyle: {         
             // normal: {
             //   areaColor: '#01215c',
             //   borderWidth: 2,//设置外层边框
             //   borderColor:'#9ffcff',
             // },
-            areaColor:{
-              image:img,
-              repeat:'no-repeat',
+            // areaColor:{
+            //   image:img,
+            //   repeat:'no-repeat',
+            // },
+
+            areaColor: {
+              type: "radial",
+              x: 0.5,
+              y: 0.5,
+              r: 0.8,
+              colorStops: [
+                {
+                  offset: 0,
+                  color: "rgba(147, 235, 248, 1)", // 0% 处的颜色
+                },
+                {
+                  offset: 1,
+                  color: "rgba(2, 99, 206, 1)", // 100% 处的颜色
+                },
+              ],
+              globalCoord: false, // 缺省为 false
             },
-            borderWidth: 1,//设置外层边框
-            borderColor:'#9ffcff',
-            shadowColor: "#9ffcff", // 阴影颜色
-            shadowOffsetX: -2, // 阴影水平方向上的偏移距离
-            shadowOffsetY: 2, // 阴影垂直方向上的偏移距离
+
+            // borderWidth: 1,//设置外层边框
+            // borderColor:'#9ffcff',
+            // shadowColor: "#9ffcff", // 阴影颜色
+            shadowOffsetX: 5, // 阴影水平方向上的偏移距离
+            shadowOffsetY: 10, // 阴影垂直方向上的偏移距离
             shadowBlur: 10, // 文字块的背景阴影长度
 
+            borderWidth: 1, // 边框大小
+            borderColor: "rgba(104, 152, 190, 1)", // 边框样式
+            shadowColor: "rgba(128, 217, 248, 1)", // 阴影颜色
+
             emphasis: {
-                areaColor: '#01215c'
-            }
-
-          },
-
-          emphasis: {
-              itemStyle: {
-                  areaColor:'red'
+              label: {
+                color: "#ffffff",
               },
-              label:{
-                  show:false
-              }
+              itemStyle: {
+                areaColor: "#a5d4fe",
+              },
+            },
+
+
           },
 
-
-
-
-
+         
           label: {
             show: true,
-            offset:[0,-25],
-            color: 'white',
+            color: 'black',
             formatter: `{a}`,
           },
         },
@@ -206,6 +218,12 @@ export default {
         if(arg.name=='苏州'){
           window.location.href='http://localhost:8999/#/test/"苏州"'
         }
+        if(arg.name=='昆明'){
+          window.location.href='http://localhost:8999/#/test/"昆明"'
+        }
+        if(arg.name=='西安'){
+          window.location.href='http://localhost:8999/#/test/"西安"'
+        }
       })
 
 
@@ -246,6 +264,9 @@ export default {
                                   },{
                                       "name": "南京",
                                       "value": [118.767413, 32.041544]
+                                  },{
+                                      "name": "昆明",
+                                      "value": [102.73,25.04]
                                   }
                                   
                               ]
@@ -257,6 +278,9 @@ export default {
                                   {
                                       "name": "济南",
                                       "value": [117,36.65]
+                                  },{                                  
+                                      "name": "西安",
+                                      "value": [108.948024,34.263161]
                                   }
                               ]
                           }

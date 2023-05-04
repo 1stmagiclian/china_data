@@ -67,7 +67,7 @@ export default {
           top: 20
         },
         grid: {
-          top: '40%',
+          top: '30%',
           left: '5%',
           right: '5%',
           bottom: '5%',
@@ -75,25 +75,61 @@ export default {
           containLabel: true
         },
         tooltip: {
-          show: true
-        },
-        xAxis: {
-          type: 'category'
-        },
-        yAxis: {
-          value: 'value'
-        },
-        series: [
-          {
-            type: 'bar',
-            label: {
-              show: true,
-              position: 'top',
-              color: 'white',
-              rotate: 30
+          trigger:'axis',
+          show: true,
+          axisPointer: {
+            type: 'cross',
+            crossStyle: {
+              color: '#999'
             }
+          } 
+        },
+        // legend: {
+        //   data: ['data', 'rank']
+        // },
+        xAxis: {
+          type: 'category',
+          axisPointer: {
+            type: 'shadow'
           }
-        ]
+        },
+        // yAxis: {
+        //   value: 'value'
+        // },
+        yAxis: [
+          {
+            type: 'value',
+            name: 'data',
+            min: 0,
+            max: 250,
+            interval: 50,
+            axisLabel: {
+              formatter: '{value} 分'
+            }
+          },
+          // {
+          //   type: 'value',
+          //   name: 'rank',
+          //   min: 1,
+          //   max: 33,
+          //   interval: 5,
+          //   axisLabel: {
+          //     formatter: '第{value} 名'
+          //   }
+          // }
+        ],
+
+        // series: [
+        //   {
+        //     type: 'bar',
+        //     label: {
+        //       show: true,
+        //       position: 'top',
+        //       color: 'white',
+        //       rotate: 30
+        //     }
+        //   }
+        // ]
       }
       this.chartInstance.setOption(initOption)
 
@@ -111,87 +147,108 @@ export default {
       const res = [
           {
             "name": "广东",
-            "value": 230
+            "data": 230,
+            "rank": 16
           },
           {
             "name": "福建",
-            "value": 214
+            "data": 168,
+            "rank": 23
           },
           {
             "name": "浙江",
-            "value": 203
+            "data": 203,
+            "rank": 10
           },
           {
             "name": "上海",
-            "value": 310
+            "data": 310,
+            "rank": 13
           },
           {
             "name": "北京",
-            "value": 289
+            "data": 289,
+            "rank": 25
           },
           {
             "name": "江苏",
-            "value": 207
+            "data": 207,
+            "rank": 24
           },
           {
             "name": "四川",
-            "value": 189
+            "data": 189,
+            "rank": 8
           },
           {
             "name": "重庆",
-            "value": 195
+            "data": 195,
+            "rank": 23
           },
           {
             "name": "陕西",
-            "value": 160
+            "data": 160,
+            "rank": 17
           },
           {
             "name": "湖南",
-            "value": 140
+            "data": 140,
+            "rank": 26
           },
           {
             "name": "河北",
-            "value": 170
+            "data": 170,
+            "rank": 2
           },
           {
             "name": "辽宁",
-            "value": 106
+            "data": 106,
+            "rank": 10
           },
           {
             "name": "湖北",
-            "value": 120
+            "data": 120,
+            "rank": 25
           },
           {
             "name": "江西",
-            "value": 99
+            "data": 99,
+            "rank": 19
           },
           {
             "name": "天津",
-            "value": 107
+            "data": 107,
+            "rank": 6
           },
           {
             "name": "吉林",
-            "value": 143
+            "data": 143,
+            "rank": 10
           },
           {
             "name": "青海",
-            "value": 65
+            "data": 65,
+            "rank": 23
           },
           {
             "name": "山东",
-            "value": 166
+            "data": 166,
+            "rank": 21
           },
           {
             "name": "山西",
-            "value": 134
+            "data": 134,
+            "rank": 16
           },
           {
             "name": "云南",
-            "value": 87
+            "data": 87,
+            "rank": 11
           },
           {
             "name": "安徽",
-            "value": 79
+            "data": 79,
+            "rank": 16
           }
         ]
       this.allData = res
@@ -214,7 +271,9 @@ export default {
       // 所有省份组成的数组
       const provinceInfo = this.allData.map(item => item.name)
       // 所有省份对应的销售金额
-      const valueArr = this.allData.map(item => item.value)
+      const dataArr = this.allData.map(item => item.data)
+      const rankArr = this.allData.map(item => item.rank)
+
 
       const dataOption = {
         xAxis: {
@@ -228,7 +287,9 @@ export default {
         },
         series: [
           {
-            data: valueArr,
+            name:'data',
+            type:'bar',
+            data: dataArr,
             itemStyle: {
               color: arg => {
                 let targetColorArr = null
@@ -249,7 +310,23 @@ export default {
                 ])
               }
             }
-          }
+          },
+          // {
+          //   name:'rank',
+          //   type:'line',
+          //   smooth:false,
+          //   lineStyle:{
+          //     color:'#23E5E5'
+          //   },
+          //   yAxisIndex: 1,
+          //   data: rankArr,
+          //   Symbol:'circle',
+          //   tooltip: {
+          //     valueFormatter: function (value) {
+          //       return value + ' 名';
+          //     }
+          //   },
+          // }
         ]
       }
       this.chartInstance.setOption(dataOption)
