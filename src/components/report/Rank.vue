@@ -100,7 +100,7 @@ export default {
 
       const initOption = {
 
-        backgroundColor:"rgb(22, 21, 34)",
+        backgroundColor:"rgb(22, 21, 34,0.5)",
 
         title: {
           text: '▎散点图',

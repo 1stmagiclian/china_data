@@ -89,7 +89,6 @@ export default {
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.stockRef, this.theme)
       const initOption = {
-
         // backgroundColor:"rgb(221, 221, 221)",
 
         title: {
