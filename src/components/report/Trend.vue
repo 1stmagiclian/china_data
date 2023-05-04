@@ -61,6 +61,9 @@ export default {
       this.chartInstance = this.$echarts.init(this.$refs.trendRef, this.theme)
 
       const initOption = {
+
+        backgroundColor:"rgb(22, 21, 34,0.5)",
+
         title: {
           text: '▎城市软实力指标排行',
           left: 20,

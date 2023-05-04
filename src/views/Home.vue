@@ -285,7 +285,7 @@ export default {
      height: 100%;
     width: 30%;
     #left-top {
-      border: 3px solid #9ffcff;
+      // border: 3px solid #9ffcff;
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
@@ -295,7 +295,7 @@ export default {
       position: relative;
     }
     #left-bottom {
-      border: 3px solid #9ffcff;
+      // border: 3px solid #9ffcff;
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
@@ -310,7 +310,7 @@ export default {
     height: 100%;
     width: 30%;
     #right {
-      border: 3px solid #9ffcff;
+      // border: 3px solid #9ffcff;
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
@@ -323,7 +323,7 @@ export default {
     height: 100%;
     width: 50%;
     #middle-top {
-      border: 3px solid #9ffcff;
+      // border: 3px solid #9ffcff;
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
@@ -335,7 +335,7 @@ export default {
       position: relative;
     }
     #middle-bottom {
-      border: 3px solid #9ffcff;
+      // border: 3px solid #9ffcff;
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
