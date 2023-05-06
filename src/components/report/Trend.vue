@@ -110,16 +110,16 @@ export default {
               formatter: '{value} 分'
             }
           },
-          // {
-          //   type: 'value',
-          //   name: 'rank',
-          //   min: 1,
-          //   max: 33,
-          //   interval: 5,
-          //   axisLabel: {
-          //     formatter: '第{value} 名'
-          //   }
-          // }
+          {
+            type: 'value',
+            name: 'rank',
+            min: 1,
+            max: 33,
+            interval: 5,
+            axisLabel: {
+              formatter: '第{value} 名'
+            }
+          }
         ],
 
         // series: [
@@ -314,22 +314,22 @@ export default {
               }
             }
           },
-          // {
-          //   name:'rank',
-          //   type:'line',
-          //   smooth:false,
-          //   lineStyle:{
-          //     color:'#23E5E5'
-          //   },
-          //   yAxisIndex: 1,
-          //   data: rankArr,
-          //   Symbol:'circle',
-          //   tooltip: {
-          //     valueFormatter: function (value) {
-          //       return value + ' 名';
-          //     }
-          //   },
-          // }
+          {
+            name:'rank',
+            type:'line',
+            smooth:false,
+            lineStyle:{
+              color:'#23E5E5'
+            },
+            yAxisIndex: 1,
+            data: rankArr,
+            Symbol:'circle',
+            tooltip: {
+              valueFormatter: function (value) {
+                return value + ' 名';
+              }
+            },
+          }
         ]
       }
       this.chartInstance.setOption(dataOption)
