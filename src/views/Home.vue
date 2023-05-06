@@ -276,6 +276,7 @@ export default {
 }
 .screen-body {
   background:url("../../images/3.jpg");
+  filter:brightness(105%) contrast(110%) opacity(110%);
   background-size:100% 100%;
   width: 100%;
   height: 100%;
@@ -285,7 +286,13 @@ export default {
      height: 100%;
     width: 30%;
     #left-top {
-      // border: 3px solid #9ffcff;
+      // border: 3px solid #9ffcff; 
+      border-image-source: radial-gradient(66% 66%, transparent 0px, transparent 100%, cyan 100%);
+      border-image-slice: 1;
+      border-width: 3px;
+      border-style: solid;
+      border-image-outset: 0cm;
+
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
@@ -296,6 +303,12 @@ export default {
     }
     #left-bottom {
       // border: 3px solid #9ffcff;
+      border-image-source: radial-gradient(66% 66%, transparent 0px, transparent 100%, cyan 100%);
+      border-image-slice: 1;
+      border-width: 3px;
+      border-style: solid;
+      border-image-outset: 0cm;
+
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
@@ -311,6 +324,12 @@ export default {
     width: 30%;
     #right {
       // border: 3px solid #9ffcff;
+      border-image-source: radial-gradient(66% 66%, transparent 0px, transparent 100%, cyan 100%);
+      border-image-slice: 1;
+      border-width: 3px;
+      border-style: solid;
+      border-image-outset: 0cm;
+
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
@@ -324,6 +343,12 @@ export default {
     width: 50%;
     #middle-top {
       // border: 3px solid #9ffcff;
+      border-image-source: radial-gradient(66% 66%, transparent 0px, transparent 100%, cyan 100%);
+      border-image-slice: 1;
+      border-width: 3px;
+      border-style: solid;
+      border-image-outset: 0cm;
+
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
@@ -336,6 +361,12 @@ export default {
     }
     #middle-bottom {
       // border: 3px solid #9ffcff;
+      border-image-source: radial-gradient(66% 66%, transparent 0px, transparent 100%, cyan 100%);
+      border-image-slice: 1;
+      border-width: 3px;
+      border-style: solid;
+      border-image-outset: 0cm;
+
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
