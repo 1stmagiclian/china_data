@@ -82,7 +82,7 @@ export default {
       // 对图表初始化的配置
       const initOption = {
 
-        backgroundColor:"rgb(22, 21, 34,0.5)",
+        backgroundColor:"rgb(22, 21, 34,0.7)",
 
         title: {
           text: '▎各地区总得分',

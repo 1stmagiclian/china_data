@@ -97,7 +97,7 @@ export default {
 
       // 初始化配置项
       const initOption = {
-        backgroundColor:"rgb(22, 21, 34,0.5)",
+        backgroundColor:"rgb(22, 21, 34,0.7)",
         // backgroundColor:{
         //   type: 'radial',
         //   x: 0.5,
