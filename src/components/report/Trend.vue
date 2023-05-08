@@ -62,7 +62,7 @@ export default {
 
       const initOption = {
 
-        backgroundColor:"rgb(22, 21, 34,0.7)",
+        backgroundColor:"rgb(22, 21, 34, 0.75)",
 
         title: {
           text: '▎城市软实力指标排行',
@@ -336,7 +336,7 @@ export default {
     },
     // 根据图标容器的宽度 计算各属性、标签、元素的大小
     screenAdapter() {
-      const titleFontSzie = (this.$refs.trendRef.offsetWidth / 100) * 3.6
+      const titleFontSzie = (this.$refs.trendRef.offsetWidth / 100) * 2.5
 
       const adapterOption = {
         title: {

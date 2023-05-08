@@ -283,11 +283,11 @@ export default {
   display: flex;
   margin-top: 10px;
   .screen-left {
-     height: 100%;
-    width: 30%;
+    height: 100%;
+    width: 27%;
     #left-top {
       // border: 3px solid #9ffcff; 
-      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, cyan 100%);
+      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 0, 187) 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
@@ -303,7 +303,7 @@ export default {
     }
     #left-bottom {
       // border: 3px solid #9ffcff;
-      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, cyan 100%);
+      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 0, 187) 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
@@ -313,7 +313,7 @@ export default {
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
       border-bottom-left-radius: 20px;
-      height: 43%;
+      height: 43.8%;
       margin-top: 25px;
       position: relative;
     }
@@ -321,10 +321,10 @@ export default {
  
   .screen-right {
     height: 100%;
-    width: 30%;
+    width: 27%;
     #right {
       // border: 3px solid #9ffcff;
-      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, cyan 100%);
+      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 0, 187) 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
@@ -334,7 +334,7 @@ export default {
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
       border-bottom-left-radius: 20px;
-      height: 89%;
+      height: 89.3%;
       position: relative;
     }
       }
@@ -343,7 +343,7 @@ export default {
     width: 50%;
     #middle-top {
       // border: 3px solid #9ffcff;
-      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, cyan 100%);
+      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 0, 187) 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
@@ -353,7 +353,7 @@ export default {
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
       border-bottom-left-radius: 20px;
-      height: 55%;
+      height: 58%;
       margin-bottom: 5px;
       margin-right: 15px;
       margin-left: 15px;
@@ -361,7 +361,7 @@ export default {
     }
     #middle-bottom {
       // border: 3px solid #9ffcff;
-      border-image-source: radial-gradient(66% 66% at center, transparent 0px, transparent 100%, cyan 100%);
+      border-image-source: radial-gradient(66% 66% at center, transparent 0px, transparent 100%, rgb(255, 0, 187) 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
@@ -371,7 +371,7 @@ export default {
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
       border-bottom-left-radius: 20px;
-      height: 33%;
+      height: 30.2%;
       // margin-bottom: 25px;
       margin-right: 15px;
       margin-left: 15px;
