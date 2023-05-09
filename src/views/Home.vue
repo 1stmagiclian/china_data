@@ -287,7 +287,7 @@ export default {
     width: 27%;
     #left-top {
       // border: 3px solid #9ffcff; 
-      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 0, 187) 100%);
+      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 255, 255) 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
@@ -303,7 +303,7 @@ export default {
     }
     #left-bottom {
       // border: 3px solid #9ffcff;
-      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 0, 187) 100%);
+      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 255, 255) 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
@@ -324,7 +324,7 @@ export default {
     width: 27%;
     #right {
       // border: 3px solid #9ffcff;
-      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 0, 187) 100%);
+      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 255, 255) 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
@@ -343,7 +343,7 @@ export default {
     width: 50%;
     #middle-top {
       // border: 3px solid #9ffcff;
-      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 0, 187) 100%);
+      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 255, 255) 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
@@ -361,7 +361,7 @@ export default {
     }
     #middle-bottom {
       // border: 3px solid #9ffcff;
-      border-image-source: radial-gradient(66% 66% at center, transparent 0px, transparent 100%, rgb(255, 0, 187) 100%);
+      border-image-source: radial-gradient(66% 66% at center, transparent 0px, transparent 100%, rgb(255, 255, 255) 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
