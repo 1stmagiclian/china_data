@@ -7,7 +7,7 @@
       <option>经济规模</option>
       <option>交通规模</option>
       <option>创新能力</option>
-      <option>基本社保</option>
+      <option>基本保障</option>
       <option>生活水平</option>
       <option>主流评价</option>
       <option>教育服务</option>
@@ -26,11 +26,15 @@
       <option>会展竞争</option>
     </select>
     <div class="com-chart" ref="trendRef"></div>
+    <i class="iconfont icon-left" @click="toLeft" :style="themeStyle">&#xe6ef;</i>
+    <i class="iconfont icon-right" @click="toRight" :style="themeStyle">&#xe6ed;</i>
+    <span class="cate-name" :style="themeStyle">{{ cateName }}</span>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import { getThemeValue } from 'utils/theme_utils'
 import axios from 'axios'
 
 export default {
@@ -42,6 +46,7 @@ export default {
       // 图表的实例对象
       chartInstance: null,
       // 从服务器中获取的所有数据
+      currentIndex:0,
       allData: null,
       // 柱形图 区域缩放起点值
       startValue: 0,
@@ -49,6 +54,7 @@ export default {
       endValue: 9,
       // 定时器
       timerId: null,
+      // PointerColor: this.axisPointerColor,
     }
   },
   created() {
@@ -56,6 +62,26 @@ export default {
   },
   computed: {
     ...mapState(['theme']),
+    // axisPointerColor() {
+    //   return getThemeValue(this.theme).sellerAxisPointerColor
+    // },
+    //展示2020年份
+    cateName() {
+      if (!this.allData) return ''
+      console.log(this.startValue)
+      console.log(this.endValue)
+      console.log(this.allData[this.currentIndex].data.length)
+      return "年份："+this.allData[this.currentIndex].year
+    },
+    themeStyle() {
+      if (!this.titleFontSize) {
+        return { color: getThemeValue(this.theme).titleColor }
+      }
+      return {
+        fontSize: this.titleFontSize + 'px',
+        color: getThemeValue(this.theme).titleColor,
+      }
+    },
   },
   watch: {
     theme() {
@@ -201,11 +227,12 @@ export default {
         ['#5052EE', '#AB6EE5']
       ]
     
+      const showData=this.allData[this.currentIndex]
       // 所有省份组成的数组
-      const provinceInfo = this.allData.map(item => item.name)
+      const provinceInfo = showData.data.map(item => item.name)
       // 所有省份对应的销售金额
-      const dataArr = this.allData.map(item => item.data)
-      const rankArr = this.allData.map(item => item.rank)
+      const dataArr = showData.data.map(item => item.data)
+      const rankArr = showData.data.map(item => item.rank)
 
 
       const dataOption = {
@@ -264,6 +291,9 @@ export default {
       }
       this.chartInstance.setOption(dataOption)
     },
+
+
+    
     // 根据图标容器的宽度 计算各属性、标签、元素的大小
     screenAdapter() {
       const titleFontSzie = (this.$refs.trendRef.offsetWidth / 100) * 2.5
@@ -286,6 +316,20 @@ export default {
       this.chartInstance.setOption(adapterOption)
       this.chartInstance.resize()
     },
+    // 点击左侧按钮
+    toLeft() {
+      this.currentIndex--
+      // 已到达最左边
+      if (this.currentIndex < 0) this.currentIndex = this.allData.length - 1
+      this.updateChart()
+    },
+    // 点击右侧按钮
+    toRight() {
+      this.currentIndex++
+      // 已到达最右边
+      if (this.currentIndex > this.allData.length - 1) this.currentIndex = 0
+      this.updateChart()
+    },
     // 改变柱形图 区域缩放起始与终点值的函数
     startInterval() {
       // 如果存在则关闭
@@ -294,18 +338,39 @@ export default {
       this.timerId = setInterval(() => {
         this.startValue++
         this.endValue++
-        if (this.endValue > this.allData.length - 1) {
+        if (this.endValue > this.allData[this.currentIndex].data.length - 1) {
           this.startValue = 0
           this.endValue = 9
         }
         this.updateChart()
       }, 3000)
-    }
+    },
   }
 }
 </script>
 
 <style lang="less" scoped>
+.com-container {
+  i {
+    z-index: 999;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    cursor: pointer;
+  }
+  i.icon-left {
+    left: 1%;
+  }
+  i.icon-right {
+    right: 1%;
+  }
+  .cate-name {
+    position: absolute;
+    right: 49%;
+    top: 25px;
+    z-index: 999;
+  }
+}
 
 select {
   /* 调整下拉框的样式 */

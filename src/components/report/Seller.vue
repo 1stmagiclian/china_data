@@ -44,6 +44,8 @@ export default {
     //展示2020年份
     cateName() {
       if (!this.allData) return ''
+      console.log(this.allData[this.currentIndex].year)
+      console.log(this.allData.length)
       return "年份："+this.allData[this.currentIndex].year
     },
     themeStyle() {
