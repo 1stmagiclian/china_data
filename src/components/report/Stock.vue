@@ -287,7 +287,7 @@ export default {
     async getData() {
 
       console.log(this.$route.params.city_name)
-      const { data: res } = await axios.get('http://127.0.0.1:5000/radar',{params:{city_name:this.$route.params.city_name}})
+      const { data: res } = await axios.get('http://127.0.0.1:5000/radar',{params:{city_name:this.$route.params.city_name,year:this.selectedValue}})
       // console.log(data)
 
       
