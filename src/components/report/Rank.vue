@@ -1,5 +1,9 @@
 <template>
   <div class="com-container">
+    <select v-model="selectedValue" @click="handleSelectChange">
+      <option>2020</option>
+      <option>2021</option>
+    </select>
     <div class="com-chart" ref="rankRef"></div>
   </div>
 </template>
@@ -20,6 +24,7 @@ export default {
   name: 'Rank',
   data() {
     return {
+      selectedValue: 2020, // 设置默认选中的值
       // 图表的实例对象
       chartInstance: null,
       // 从服务器中获取的所有数据
@@ -76,6 +81,15 @@ export default {
   },
 
   methods: {
+
+    handleSelectChange() {
+      console.log(this.selectedValue)
+      // 根据下拉框的值发送请求给后端接口，并获取数据
+      this.screenAdapter()
+      this.getData()
+      // 更新图表
+      this.updateChart()
+    },
 
     //散点图颜色随机生成
     domColor(dataIndex){
@@ -187,14 +201,16 @@ export default {
       // const { data: res } = await this.$http.get('/rank')
 
 
-      const res = [
-            [2.92,5.00,'石家庄',11235086],[3.25,5.00,'太原',5304061],[3.02,3.32,'呼和浩特',3446100],
-            [4.24,4.56,'沈阳',9070093],[3.78,4.43,'长春',9066906],[5.16,4.34,'哈尔滨',10009854],
-            [7.53,6.22,'南京',9314685],[9.05,6.71,'杭州',11936010],[4.23,4.45,'合肥',9369881],
-            [4.30,4.61,'福州',8291268],[4.06,5.17,'南昌',6255007],[4.75,6.13,'济南',9202432],
-            [4.50,5.84,'郑州',12600574],[7.09,6.89,'武汉',12326518],[5.85,5.83,'长沙',10047914],
-            [8.08,5.50,'苏州',12748262],[4.75,6.13,'济南',9202432],
-      ]
+      // const res = [
+      //       [2.92,5.00,'石家庄',11235086],[3.25,5.00,'太原',5304061],[3.02,3.32,'呼和浩特',3446100],
+      //       [4.24,4.56,'沈阳',9070093],[3.78,4.43,'长春',9066906],[5.16,4.34,'哈尔滨',10009854],
+      //       [7.53,6.22,'南京',9314685],[9.05,6.71,'杭州',11936010],[4.23,4.45,'合肥',9369881],
+      //       [4.30,4.61,'福州',8291268],[4.06,5.17,'南昌',6255007],[4.75,6.13,'济南',9202432],
+      //       [4.50,5.84,'郑州',12600574],[7.09,6.89,'武汉',12326518],[5.85,5.83,'长沙',10047914],
+      //       [8.08,5.50,'苏州',12748262],[4.75,6.13,'济南',9202432],
+      // ]
+      const { data: res } = await axios.get('http://127.0.0.1:5000/scatter',{params:{year:this.selectedValue}})
+
 
       this.allData = res
 
@@ -292,4 +308,21 @@ export default {
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+select {
+  /* 调整下拉框的样式 */
+  z-index: 1;
+  width: 100px; /* 设置宽度 */
+  height: 30px; /* 设置高度 */
+  padding: 5px; /* 设置内边距 */
+  font-size: 14px; /* 设置字体大小 */
+  border: 1px solid #ccc; /* 设置边框样式 */
+  border-radius: 4px; /* 设置边框圆角 */
+  position: absolute; /* 设置绝对定位 */
+  top: 20px; /* 设置相对于父容器的顶部偏移量 */
+  right: 100px; /* 设置相对于父容器的右侧偏移量 */
+  
+  // color: black; /* 设置字体颜色 */
+  background-color: #23E5E5; /* 设置背景色 */
+}
+</style>

@@ -1,17 +1,44 @@
 <template>
   <div class="com-container">
+    <select v-model="selectedValue" @click="handleSelectChange">
+      <option>生态禀赋</option>
+      <option>文化资源</option>
+      <option>政策地位</option>
+      <option>经济规模</option>
+      <option>交通规模</option>
+      <option>创新能力</option>
+      <option>基本社保</option>
+      <option>生活水平</option>
+      <option>主流评价</option>
+      <option>教育服务</option>
+      <option>医疗服务</option>
+      <option>文化服务</option>
+      <option>主流媒体</option>
+      <option>网络接入</option>
+      <option>舆情干预</option>
+      <option>媒体影响</option>
+      <option>群体情绪</option>
+      <option>城市标签</option>
+      <option>就业吸引</option>
+      <option>就学吸引</option>
+      <option>旅游吸引</option>
+      <option>外资吸引</option>
+      <option>会展竞争</option>
+    </select>
     <div class="com-chart" ref="trendRef"></div>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import axios from 'axios'
 
 export default {
   // 地区销量排行
   name: 'Trend',
   data() {
     return {
+      selectedValue: '生态禀赋', // 设置默认选中的值
       // 图表的实例对象
       chartInstance: null,
       // 从服务器中获取的所有数据
@@ -21,14 +48,14 @@ export default {
       // 柱形图结 区域缩放终点值
       endValue: 9,
       // 定时器
-      timerId: null
+      timerId: null,
     }
   },
   created() {
     // this.$socket.registerCallBack('rankData', this.getData)
   },
   computed: {
-    ...mapState(['theme'])
+    ...mapState(['theme']),
   },
   watch: {
     theme() {
@@ -56,6 +83,13 @@ export default {
     // this.$socket.unRegisterCallBack('rankData')
   },
   methods: {
+    handleSelectChange() {
+      // 根据下拉框的值发送请求给后端接口，并获取数据
+      this.screenAdapter()
+      this.getData()
+      // 更新图表
+      this.updateChart()
+    },
     // 初始化图表的方法
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.trendRef, this.theme)
@@ -65,12 +99,12 @@ export default {
         backgroundColor:"rgb(22, 21, 34, 0.75)",
 
         title: {
-          text: '▎城市软实力指标排行',
+          text: '▎城市软实力数据指标分析',
           left: 20,
           top: 20
         },
         grid: {
-          top: '30%',
+          top: '29%',
           left: '5%',
           right: '5%',
           bottom: '5%',
@@ -94,8 +128,12 @@ export default {
           type: 'category',
           axisPointer: {
             type: 'shadow'
-          }
+          },
+          axisLabel: {
+            interval: 0, // 横坐标不间隔显示
+          },
         },
+        
         // yAxis: {
         //   value: 'value'
         // },
@@ -104,15 +142,16 @@ export default {
             type: 'value',
             name: 'data',
             min: 0,
-            max: 250,
-            interval: 50,
+            max: 1,
+            interval: 0.1,
             axisLabel: {
-              formatter: '{value} 分'
+              formatter: '{value} '
             }
           },
           {
             type: 'value',
             name: 'rank',
+            inverse: true,
             min: 1,
             max: 33,
             interval: 5,
@@ -122,17 +161,6 @@ export default {
           }
         ],
 
-        // series: [
-        //   {
-        //     type: 'bar',
-        //     label: {
-        //       show: true,
-        //       position: 'top',
-        //       color: 'white',
-        //       rotate: 30
-        //     }
-        //   }
-        // ]
       }
       this.chartInstance.setOption(initOption)
 
@@ -147,120 +175,22 @@ export default {
     },
     // 发送请求，获取数据
     async getData() {
-      const res = [
-          {
-            "name": "广东",
-            "data": 230,
-            "rank": 16
-          },
-          {
-            "name": "福建",
-            "data": 168,
-            "rank": 23
-          },
-          {
-            "name": "浙江",
-            "data": 203,
-            "rank": 10
-          },
-          {
-            "name": "上海",
-            "data": 310,
-            "rank": 13
-          },
-          {
-            "name": "北京",
-            "data": 289,
-            "rank": 25
-          },
-          {
-            "name": "江苏",
-            "data": 207,
-            "rank": 24
-          },
-          {
-            "name": "四川",
-            "data": 189,
-            "rank": 8
-          },
-          {
-            "name": "重庆",
-            "data": 195,
-            "rank": 23
-          },
-          {
-            "name": "陕西",
-            "data": 160,
-            "rank": 17
-          },
-          {
-            "name": "湖南",
-            "data": 140,
-            "rank": 26
-          },
-          {
-            "name": "河北",
-            "data": 170,
-            "rank": 2
-          },
-          {
-            "name": "辽宁",
-            "data": 106,
-            "rank": 10
-          },
-          {
-            "name": "湖北",
-            "data": 120,
-            "rank": 25
-          },
-          {
-            "name": "江西",
-            "data": 99,
-            "rank": 19
-          },
-          {
-            "name": "天津",
-            "data": 107,
-            "rank": 6
-          },
-          {
-            "name": "吉林",
-            "data": 143,
-            "rank": 10
-          },
-          {
-            "name": "青海",
-            "data": 65,
-            "rank": 23
-          },
-          {
-            "name": "山东",
-            "data": 166,
-            "rank": 21
-          },
-          {
-            "name": "山西",
-            "data": 134,
-            "rank": 16
-          },
-          {
-            "name": "云南",
-            "data": 87,
-            "rank": 11
-          },
-          {
-            "name": "安徽",
-            "data": 79,
-            "rank": 16
-          }
-        ]
+      
+      const { data: res } = await axios.get('http://127.0.0.1:5000/softpower',{params:{data_index:this.selectedValue}})
+
       this.allData = res
       // 对数据进行排序(大到小)
-      this.allData.sort((a, b) => b.value - a.value)
+      // this.allData.sort((a, b) => b.value - a.value)
 
+      
       this.updateChart()
+
+      //额外添加
+      this.screenAdapter()
+
       // 开始自动切换
       this.startInterval()
+      
     },
     // 更新图表配置项
     updateChart() {
@@ -297,9 +227,9 @@ export default {
               color: arg => {
                 let targetColorArr = null
 
-                if (arg.value > 300) {
+                if (arg.value > 0.8) {
                   targetColorArr = colorArr[0]
-                } else if (arg.value > 200) {
+                } else if (arg.value > 0.5) {
                   targetColorArr = colorArr[1]
                 } else {
                   targetColorArr = colorArr[2]
@@ -369,10 +299,28 @@ export default {
           this.endValue = 9
         }
         this.updateChart()
-      }, 2000)
+      }, 3000)
     }
   }
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+
+select {
+  /* 调整下拉框的样式 */
+  z-index: 1;
+  width: 100px; /* 设置宽度 */
+  height: 30px; /* 设置高度 */
+  padding: 5px; /* 设置内边距 */
+  font-size: 14px; /* 设置字体大小 */
+  border: 1px solid #ccc; /* 设置边框样式 */
+  border-radius: 4px; /* 设置边框圆角 */
+  position: absolute; /* 设置绝对定位 */
+  top: 20px; /* 设置相对于父容器的顶部偏移量 */
+  right: 200px; /* 设置相对于父容器的右侧偏移量 */
+  
+  // color: black; /* 设置字体颜色 */
+  background-color: #23E5E5; /* 设置背景色 */
+}
+</style>

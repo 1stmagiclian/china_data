@@ -1,6 +1,9 @@
 <template>
   <div class="com-container">
     <div class="com-chart" ref="sellerRef"></div>
+    <i class="iconfont icon-left" @click="toLeft" :style="themeStyle">&#xe6ef;</i>
+    <i class="iconfont icon-right" @click="toRight" :style="themeStyle">&#xe6ed;</i>
+    <span class="cate-name" :style="themeStyle">{{ cateName }}</span>
   </div>
 </template>
 
@@ -18,6 +21,8 @@ export default {
       chartInstance: null,
       // 服务器返回的数据
       allData: null,
+      // 当前显示的一级分类数据类型
+      currentIndex: 0,
       // 当前显示的页数
       curretnPage: 1,
       // 总页数
@@ -35,6 +40,20 @@ export default {
     ...mapState(['theme']),
     axisPointerColor() {
       return getThemeValue(this.theme).sellerAxisPointerColor
+    },
+    //展示2020年份
+    cateName() {
+      if (!this.allData) return ''
+      return "年份："+this.allData[this.currentIndex].year
+    },
+    themeStyle() {
+      if (!this.titleFontSize) {
+        return { color: getThemeValue(this.theme).titleColor }
+      }
+      return {
+        fontSize: this.titleFontSize + 'px',
+        color: getThemeValue(this.theme).titleColor,
+      }
     },
   },
   watch: {
@@ -175,24 +194,27 @@ export default {
       // const res = await this.$http.get('/') 
 
       
-      // const res=[{"name":"广州","value":0.7},
-      //            {"name":"杭州","value":0.69},
-      //            {"name":"郑州","value":0.45},
-      //            {"name":"武汉","value":0.62},
-      //            {"name":"西安","value":0.53},
-      //            {"name":"成都","value":0.68},
-      //            {"name":"呼和浩特","value":0.27},
-      //            {"name":"济南","value":0.51},
-      //            {"name":"昆明","value":0.4},
-      //            {"name":"兰州","value":0.3},
-      //            {"name":"南京","value":0.64},
-      //            {"name":"深圳","value":0.56},
-      //            {"name":"大连","value":0.39},
-      //            {"name":"贵阳","value":0.32},
-      //            {"name":"太原","value":0.37},
-      //            {"name":"海口","value":0.33},
-      //            {"name":"青岛","value":0.52},
-      //            {"name":"苏州","value":0.59},
+      // const res=[
+      //   {
+      //     "year":2020,
+      //     "data":[{"name":"广州","value":0.7},
+      //             {"name":"杭州","value":0.69},
+      //             {"name":"郑州","value":0.45},
+      //             {"name":"武汉","value":0.62},
+      //             {"name":"西安","value":0.53},
+      //             {"name":"成都","value":0.68},
+      //           ]
+      //   },
+      //   {
+      //     "year":2021,
+      //     "data":[{"name":"广州","value":0.7},
+      //             {"name":"北京","value":0.79},
+      //             {"name":"郑州","value":0.65},
+      //             {"name":"武汉","value":0.42},
+      //             {"name":"西安","value":0.33},
+      //             {"name":"成都","value":0.58},
+      //           ]
+      //   }
       // ]
 
       const {data : res} = await axios.get('http://127.0.0.1:5000/')
@@ -201,9 +223,9 @@ export default {
       console.log(res)
       this.allData = res
       // 对数组排序 从小到大进行排序
-      this.allData.sort((a, b) => a.value - b.value)
-      // 每五个元素显示一页 计算出总页数【向上取整】
-      this.totalPage = Math.ceil(this.allData.length / 9)
+      // this.allData[this.currentIndex].data.sort((a, b) => a.value - b.value)
+      // // 每五个元素显示一页 计算出总页数【向上取整】
+      // this.totalPage = Math.ceil(this.allData.length / 9)
 
       // 开始第一次渲染
       this.updateChart()
@@ -219,12 +241,13 @@ export default {
       // const end = this.curretnPage * 33  //10、20、30
       // const showData = this.allData.slice(start, end)
 
-      const showData = this.allData
+      this.allData[this.currentIndex].data.sort((a, b) => a.value - b.value)
+      const showData = this.allData[this.currentIndex]
 
       // y轴上的数据
-      const sellerNames = showData.map(item => item.name)
+      const sellerNames = showData.data.map(item => item.name)
       // x轴上的数据
-      const sellerValues = showData.map(item => item.value)
+      const sellerValues = showData.data.map(item => item.value)
 
       // 当拿到数据后，准备数据的配置项
       const dataOption = {
@@ -265,7 +288,7 @@ export default {
       const adapterOption = {
         title: {
           textStyle: {
-            fontSize: 30,
+            fontSize: 25,
           },
         },
         tooltip: {
@@ -288,8 +311,44 @@ export default {
       // 手动调用图表的 resize 才能产生效果
       this.chartInstance.resize()
     },
+    // 点击左侧按钮
+    toLeft() {
+      this.currentIndex--
+      // 已到达最左边
+      if (this.currentIndex < 0) this.currentIndex = this.allData.length - 1
+      this.updateChart()
+    },
+    // 点击右侧按钮
+    toRight() {
+      this.currentIndex++
+      // 已到达最右边
+      if (this.currentIndex > this.allData.length - 1) this.currentIndex = 0
+      this.updateChart()
+    },
   },
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.com-container {
+  i {
+    z-index: 999;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    cursor: pointer;
+  }
+  i.icon-left {
+    left: 1%;
+  }
+  i.icon-right {
+    right: 1%;
+  }
+  .cate-name {
+    position: absolute;
+    right: 25%;
+    top: 40px;
+    z-index: 999;
+  }
+}
+</style>

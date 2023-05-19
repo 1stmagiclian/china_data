@@ -1,5 +1,9 @@
 <template>
   <div class="com-container">
+    <select v-model="selectedValue" @click="handleSelectChange">
+      <option>2020</option>
+      <option>2021</option>
+    </select>
     <div class="com-chart" ref="hotRef"></div>
   </div>
 </template>
@@ -7,13 +11,17 @@
 
 <script>
 import { mapState } from 'vuex'
-import { getThemeValue } from 'utils/theme_utils'
-import _ from 'lodash'
+import "echarts-wordcloud"
+import "echarts-wordcloud/dist/echarts-wordcloud"
+import "echarts-wordcloud/dist/echarts-wordcloud.min"
+import axios from 'axios'
+
 
 export default {
   name: 'Hot',
   data() {
     return {
+      selectedValue: 2020, // 设置默认选中的值
       // 图表的实例对象
       chartInstance: null,
       // 从服务器中获取的所有数据
@@ -21,11 +29,11 @@ export default {
       // 当前显示的一级分类数据类型
       // currentIndex: 0,
       // 字体响应式大小
-      titleFontSize: null,
+      // titleFontSize: null,
     }
   },
   created() {
-    this.getData()
+    // this.getData()
   },
   computed: {
     ...mapState(['theme']),
@@ -54,6 +62,14 @@ export default {
     // this.$socket.unRegisterCallBack('hotData')
   },
   methods: {
+    handleSelectChange() {
+      console.log(this.selectedValue)
+      // 根据下拉框的值发送请求给后端接口，并获取数据
+      this.screenAdapter()
+      this.getData()
+      // 更新图表
+      this.updateChart()
+    },
     // 初始化图表的方法
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.hotRef, this.theme)
@@ -65,44 +81,37 @@ export default {
           left: 20,
           top: 20,
         },
-        legend: {
-          top: '15%',
-          // 图标类型 圆形
-          icon: 'circle',
-        },
         tooltip: {
           show: true,
-          
         },
-        series: [
-          {
-            type: 'pie',
-            // label: {
-            //   show: true,
-            //   formatter:`{b}{d}%`
-            // },
-            // 高亮状态下的样式
-            emphasis: {
-              labelLine: {
-                // 连接文字的线条
-                show: true,
-              },
-            },
-          },
-        ],
       }
       this.chartInstance.setOption(initOption)
     },
     // 发送请求，获取数据
     async getData() {
-      const res = [
-        { value: 1048, name: '北京' },
-        { value: 735, name: '昆明' },
-        { value: 580, name: '南京' },
-        { value: 484, name: '苏州' },
-        { value: 300, name: '济南' },
-        { value: 500, name: '海南' },
-      ]
+      const { data: res } = await axios.get('http://127.0.0.1:5000/wordcloud',{params:{year:this.selectedValue}})
+      // const res = [
+      //       {
+      //         name: "国防白皮书",
+      //         value: 6500
+      //       },
+      //       {
+      //         name: "创新",
+      //         value: 6000
+      //       },
+      //       {
+      //         name: "民主革命",
+      //         value: 4500
+      //       },
+      //       {
+      //         name: "从严治党",
+      //         value: 1900
+      //       },
+      //       {
+      //         name: "现代化经济体系",
+      //         value: 1800
+      //       },           
+      //     ]
       this.allData = res
       this.updateChart()
     },
@@ -117,39 +126,54 @@ export default {
         // },
         series: [
           {
-            data: this.allData,
-          },
-        ],
+            type: "wordCloud",
+            gridSize: 20,
+            rotationRange: [0, 0],
+            shape: 'circle',
+            textStyle: {
+              normal: {
+                fontFamily: 'Impact, sans-serif',
+                fontWeight: 'bold',
+                color: function() {
+                  return 'rgb(' +
+                    Math.round(Math.random() * 255) +
+                    ',' +
+                    Math.round(Math.random() * 255) +
+                    ',' +
+                    Math.round(Math.random() * 255) +
+                    ')';
+                }
+              }
+            },
+            left: 'center',
+            top: '16%',
+            // width: '90%',
+            // height: '70%',
+            drawOutOfBound: true,
+            data: this.allData
+          }
+        ]
       }
       this.chartInstance.setOption(dataOption)
     },
-    // 不同分辨率的响应式
+    //不同分辨率的响应式
     screenAdapter() {
-      this.titleFontSize = (this.$refs.hotRef.offsetWidth / 100) * 3.6
+      const titleFontSize = (this.$refs.hotRef.offsetWidth / 100) * 4
 
       const adapterOption = {
         title: {
           textStyle: {
-            fontSize: this.titleFontSize,
-          },
-        },
-        legend: {
-          itemWidth: this.titleFontSize,
-          itemHeight: this.titleFontSize,
-          // 图例的间隔
-          itemGap: this.titleFontSize / 2,
-          textStyle: {
-            fontSize: this.titleFontSize / 1.2,
+            fontSize: 25,
           },
         },
         series: [
           {
-            // 饼图的大小 半径
-            radius: this.titleFontSize * 4.5,
-            // 控制饼图的位置 x,y
-            center: ['50%', '60%'],
-          },
-        ],
+            width: titleFontSize*25,
+            // height: titleFontSize*60,
+            // gridSize: titleFontSize*0.5,     
+            sizeRange: [titleFontSize, titleFontSize*3],    
+          }
+        ]
       }
       this.chartInstance.setOption(adapterOption)
       this.chartInstance.resize()
@@ -158,4 +182,21 @@ export default {
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+select {
+  /* 调整下拉框的样式 */
+  z-index: 1;
+  width: 100px; /* 设置宽度 */
+  height: 30px; /* 设置高度 */
+  padding: 5px; /* 设置内边距 */
+  font-size: 14px; /* 设置字体大小 */
+  border: 1px solid #ccc; /* 设置边框样式 */
+  border-radius: 4px; /* 设置边框圆角 */
+  position: absolute; /* 设置绝对定位 */
+  top: 20px; /* 设置相对于父容器的顶部偏移量 */
+  right: 60px; /* 设置相对于父容器的右侧偏移量 */
+  
+  // color: black; /* 设置字体颜色 */
+  background-color: #23E5E5; /* 设置背景色 */
+}
+</style>

@@ -286,36 +286,42 @@ export default {
     height: 100%;
     width: 27%;
     #left-top {
-      // border: 3px solid #9ffcff; 
-      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 255, 255) 100%);
+      border: none;
+      border-image-source: radial-gradient(66% 66% at center,transparent 1px, transparent 80%, #23E5E5 100%);
       border-image-slice: 1;
-      border-width: 3px;
+      // border-width: 3px;
       border-style: solid;
-      border-image-outset: 0cm;
-
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
-      border-bottom-left-radius: 20px;
-      margin-bottom: 25px;
+      // border-image-outset: 0cm;
+      margin-bottom: 15px;
       height: 42%;
       position: relative;
     }
+
+    // @keyframes borderAnimation {
+    //   0% {
+    //     border-color: #98e5e9;
+    //     box-shadow: 0 0 10px #98e5e9, 0 0 20px #98e5e9, 0 0 30px #98e5e9;
+    //   }
+    //   50% {
+    //     border-color: #23E5E5;
+    //     box-shadow: 0 0 10px #23E5E5, 0 0 20px #23E5E5, 0 0 30px #23E5E5;
+    //   }
+    //   100% {
+    //     border-color: #0b8de9;
+    //     box-shadow: 0 0 10px #0b8de9, 0 0 20px #0b8de9, 0 0 30px #0b8de9;
+    //   }
+    // }
+
     #left-bottom {
-      // border: 3px solid #9ffcff;
-      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 255, 255) 100%);
+      border-image-source: radial-gradient(66% 66% at center,transparent 1px, transparent 80%, #23E5E5 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
       border-image-outset: 0cm;
-
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
-      border-bottom-left-radius: 20px;
-      height: 43.8%;
-      margin-top: 25px;
+      height: 44.9%;
+      margin-top: 15px;
       position: relative;
+      // animation: borderAnimation 10s linear infinite;
     }
   }
  
@@ -323,27 +329,25 @@ export default {
     height: 100%;
     width: 27%;
     #right {
-      // border: 3px solid #9ffcff;
-      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 255, 255) 100%);
+      border-image-source: radial-gradient(66% 66% at center,transparent 1px, transparent 80%, #23E5E5 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
       border-image-outset: 0cm;
-
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
-      border-bottom-left-radius: 20px;
+      // border-top-left-radius: 20px;
+      // border-top-right-radius: 20px;
+      // border-bottom-right-radius: 20px;
+      // border-bottom-left-radius: 20px;
       height: 89.3%;
       position: relative;
+      // animation: borderAnimation 10s linear infinite;
     }
-      }
+  }
   .screen-middle {
     height: 100%;
     width: 50%;
     #middle-top {
-      // border: 3px solid #9ffcff;
-      border-image-source: radial-gradient(66% 66% at center,transparent 0px, transparent 100%, rgb(255, 255, 255) 100%);
+      border-image-source: radial-gradient(66% 66% at center,transparent 1px, transparent 80%, #23E5E5 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
@@ -353,15 +357,16 @@ export default {
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
       border-bottom-left-radius: 20px;
-      height: 58%;
-      margin-bottom: 5px;
-      margin-right: 15px;
-      margin-left: 15px;
+      height: 57.3%;
+      margin-bottom: 10px;
+      margin-right: 10px;
+      margin-left: 10px;
       position: relative;
+      // animation: borderAnimation 10s linear infinite;
+
     }
     #middle-bottom {
-      // border: 3px solid #9ffcff;
-      border-image-source: radial-gradient(66% 66% at center, transparent 0px, transparent 100%, rgb(255, 255, 255) 100%);
+      border-image-source: radial-gradient(66% 66% at center,transparent 1px, transparent 80%, #23E5E5 100%);
       border-image-slice: 1;
       border-width: 3px;
       border-style: solid;
@@ -373,9 +378,10 @@ export default {
       border-bottom-left-radius: 20px;
       height: 30.2%;
       // margin-bottom: 25px;
-      margin-right: 15px;
-      margin-left: 15px;
+      margin-right: 10px;
+      margin-left: 10px;
       position: relative;
+      // animation: borderAnimation 10s linear infinite;
     }
   }
 }

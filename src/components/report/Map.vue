@@ -184,7 +184,7 @@ export default {
          
           label: {
             show: true,
-            color: 'black',
+            color: 'white',
             formatter: `{a}`,
           },
         },
@@ -235,6 +235,33 @@ export default {
         if(arg.name=='西安'){
           window.location.href='http://localhost:8999/#/test/"西安"'
         }
+        if(arg.name=='石家庄'){
+          window.location.href='http://localhost:8999/#/test/"石家庄"'
+        }
+        if(arg.name=='太原'){
+          window.location.href='http://localhost:8999/#/test/"太原"'
+        }
+        if(arg.name=='呼和浩特'){
+          window.location.href='http://localhost:8999/#/test/"呼和浩特"'
+        }
+        if(arg.name=='沈阳'){
+          window.location.href='http://localhost:8999/#/test/"沈阳"'
+        }
+        if(arg.name=='长春'){
+          window.location.href='http://localhost:8999/#/test/"长春"'
+        }
+        if(arg.name=='哈尔滨'){
+          window.location.href='http://localhost:8999/#/test/"哈尔滨"'
+        }
+        if(arg.name=='杭州'){
+          window.location.href='http://localhost:8999/#/test/"杭州"'
+        }
+        if(arg.name=='合肥'){
+          window.location.href='http://localhost:8999/#/test/"合肥"'
+        }
+        if(arg.name=='乌鲁木齐'){
+          window.location.href='http://localhost:8999/#/test/"乌鲁木齐"'
+        }
       })
 
 
@@ -248,25 +275,6 @@ export default {
 
       const res =      [
                           {
-                              // "name": "111",
-                              // "children": [
-                              //     {
-                              //         "name":"昆明",
-                              //         "value": [102.73, 25.04]
-                              //     },
-                              //     {
-                              //         "name": "武汉",
-                              //         "value": [114.31, 30.52]
-                              //     }, {
-                              //         "name": "深圳",
-                              //         "value": [114.07, 22.62]
-                              //     }, {
-                              //         "name": "济南",
-                              //         "value": [117,36.65]
-                              //     }
-                              // ]
-                          },
-                          {
                               "name": "南方城市",
                               "children": [
                                   {
@@ -278,6 +286,9 @@ export default {
                                   },{
                                       "name": "昆明",
                                       "value": [102.73,25.04]
+                                  },{
+                                      "name": "杭州",
+                                      "value": [120.153576, 30.287459]
                                   }
                                   
                               ]
@@ -285,14 +296,38 @@ export default {
                           {
                               "name": "北方城市",
                               "children": [
-                                  
                                   {
                                       "name": "济南",
                                       "value": [117,36.65]
                                   },{                                  
                                       "name": "西安",
                                       "value": [108.948024,34.263161]
+                                  },{                                  
+                                      "name": "石家庄",
+                                      "value": [114.48,38.03]
+                                  },{                                  
+                                      "name": "太原",
+                                      "value": [112.53,37.87]
+                                  },{                                  
+                                      "name": "呼和浩特",
+                                      "value": [111.670801, 40.818311]
+                                  },{                                  
+                                      "name": "沈阳",
+                                      "value": [123.429096, 41.796767]
+                                  },{                                  
+                                      "name": "长春",
+                                      "value": [125.3245, 43.886841]
+                                  },{                                  
+                                      "name": "哈尔滨",
+                                      "value": [126.63,45.75]
+                                  },{                                  
+                                      "name": "合肥",
+                                      "value": [117.283042, 31.86119]
+                                  },{                                  
+                                      "name": "乌鲁木齐",
+                                      "value": [87.617733,43.792818]
                                   }
+                                  
                               ]
                           }
                       ]
@@ -334,6 +369,7 @@ export default {
       // 数据配置项
       const dataOption = {
 
+        color:['#e705ef', '#550cde'],
         //左下角的图例效果
         legend: {
           left: '2%',
@@ -359,7 +395,7 @@ export default {
       const adapterOption = {
         title: {
           textStyle: {
-            fontSize: titleFontSize,
+            fontSize: 25,
           },
         },
         legend: {
