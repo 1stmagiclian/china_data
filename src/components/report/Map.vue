@@ -211,13 +211,14 @@ export default {
         const changeOption = {
           geo: {
             map: ProvinceInfo.key,
+            center: undefined,
           },
         }
         // 赋值给 echarts实例
         this.chartInstance.setOption(changeOption)
       })
 
-
+      
       this.chartInstance.on('click',arg=>{
         //console.log(arg)
         if(arg.name=='济南'){
