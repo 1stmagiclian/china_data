@@ -29,7 +29,7 @@ export default {
       // 当前显示的一级分类数据类型
       // currentIndex: 0,
       // 字体响应式大小
-      // titleFontSize: null,
+      titleFontSize: null,
     }
   },
   created() {
@@ -77,7 +77,7 @@ export default {
       const initOption = {
         backgroundColor:"rgb(22, 21, 34, 0.75)",
         title: {
-          text: '▎城市单一指标对比',
+          text: '▎指标词云分析',
           left: 20,
           top: 20,
         },
@@ -114,12 +114,14 @@ export default {
       //     ]
       this.allData = res
       this.updateChart()
+      this.screenAdapter()
+
     },
     // 更新图表配置项
     updateChart() {
 
       console.log(this.allData)
-    
+        
       const dataOption = {
         // legend: {
         //   data: legenDateArr,
@@ -134,15 +136,23 @@ export default {
               normal: {
                 fontFamily: 'Impact, sans-serif',
                 fontWeight: 'bold',
-                color: function() {
-                  return 'rgb(' +
-                    Math.round(Math.random() * 255) +
-                    ',' +
-                    Math.round(Math.random() * 255) +
-                    ',' +
-                    Math.round(Math.random() * 255) +
-                    ')';
-                }
+                // color: function() {
+                //   return 'rgb(' +
+                //     Math.round(Math.random() * 255) +
+                //     ',' +
+                //     Math.round(Math.random() * 255) +
+                //     ',' +
+                //     Math.round(Math.random() * 255) +
+                //     ')';
+                // }
+                color:function(params){
+                    if(params.value >0 && params.value <50){
+                      return "#a304d3";
+                    }else if(params.value >=50 && params.value<=80 ){
+                      return "#23E5E5";
+                    }
+                    return "#2004d3";
+                  }
               }
             },
             left: 'center',
@@ -171,7 +181,7 @@ export default {
             width: titleFontSize*25,
             // height: titleFontSize*60,
             // gridSize: titleFontSize*0.5,     
-            sizeRange: [titleFontSize, titleFontSize*3],    
+            sizeRange: [titleFontSize, titleFontSize*2],    
           }
         ]
       }
