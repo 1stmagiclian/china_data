@@ -1,6 +1,6 @@
 <template>
   <div class="com-container">
-    <select v-model="selectedValue" @click="handleSelectChange">
+    <select v-model="selectedValue" @change="handleSelectChange">
       <option>2020</option>
       <option>2021</option>
     </select>
@@ -85,10 +85,12 @@ export default {
     handleSelectChange() {
       console.log(this.selectedValue)
       // 根据下拉框的值发送请求给后端接口，并获取数据
-      this.screenAdapter()
-      this.getData()
-      // 更新图表
-      this.updateChart()
+      if(this.selectedValue){
+        this.screenAdapter()
+        this.getData()
+        // 更新图表
+        this.updateChart()
+      }
     },
 
     //散点图颜色随机生成
@@ -117,7 +119,7 @@ export default {
         backgroundColor:"rgb(22, 21, 34, 0.75)",
 
         title: {
-          text: '▎散点图',
+          text: '▎城市得分散点图',
           left: 20,
           top: 20
         },
@@ -312,7 +314,7 @@ export default {
 select {
   /* 调整下拉框的样式 */
   z-index: 1;
-  width: 100px; /* 设置宽度 */
+  width: 70px; /* 设置宽度 */
   height: 30px; /* 设置高度 */
   padding: 5px; /* 设置内边距 */
   font-size: 14px; /* 设置字体大小 */
@@ -320,7 +322,7 @@ select {
   border-radius: 4px; /* 设置边框圆角 */
   position: absolute; /* 设置绝对定位 */
   top: 20px; /* 设置相对于父容器的顶部偏移量 */
-  right: 100px; /* 设置相对于父容器的右侧偏移量 */
+  right: 60px; /* 设置相对于父容器的右侧偏移量 */
   
   // color: black; /* 设置字体颜色 */
   background-color: #23E5E5; /* 设置背景色 */

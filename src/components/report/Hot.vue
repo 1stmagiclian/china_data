@@ -1,6 +1,6 @@
 <template>
   <div class="com-container">
-    <select v-model="selectedValue" @click="handleSelectChange">
+    <select v-model="selectedValue" @change="handleSelectChange">
       <option>2020</option>
       <option>2021</option>
     </select>
@@ -196,7 +196,7 @@ export default {
 select {
   /* 调整下拉框的样式 */
   z-index: 1;
-  width: 100px; /* 设置宽度 */
+  width: 70px; /* 设置宽度 */
   height: 30px; /* 设置高度 */
   padding: 5px; /* 设置内边距 */
   font-size: 14px; /* 设置字体大小 */

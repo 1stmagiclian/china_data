@@ -1,6 +1,6 @@
 <template>
   <div class="com-container">
-    <select v-model="selectedValue" @click="handleSelectChange">
+    <select v-model="selectedValue" @change="handleSelectChange">
       <option>生态禀赋</option>
       <option>文化资源</option>
       <option>政策地位</option>
@@ -366,7 +366,7 @@ export default {
   }
   .cate-name {
     position: absolute;
-    right: 49%;
+    right: 39%;
     top: 25px;
     z-index: 999;
   }
@@ -383,7 +383,7 @@ select {
   border-radius: 4px; /* 设置边框圆角 */
   position: absolute; /* 设置绝对定位 */
   top: 20px; /* 设置相对于父容器的顶部偏移量 */
-  right: 200px; /* 设置相对于父容器的右侧偏移量 */
+  right: 100px; /* 设置相对于父容器的右侧偏移量 */
   
   // color: black; /* 设置字体颜色 */
   background-color: #23E5E5; /* 设置背景色 */

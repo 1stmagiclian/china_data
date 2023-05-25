@@ -1,6 +1,6 @@
 <template>
   <div class="com-container">
-    <select v-model="selectedValue" @click="handleSelectChange">
+    <select v-model="selectedValue" @change="handleSelectChange">
       <option>2020</option>
       <option>2021</option>
     </select>
