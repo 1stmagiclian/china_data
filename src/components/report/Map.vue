@@ -263,6 +263,63 @@ export default {
         if(arg.name=='乌鲁木齐'){
           window.location.href='http://localhost:8999/#/test/"乌鲁木齐"'
         }
+        if(arg.name=='福州'){
+          window.location.href='http://localhost:8999/#/test/"福州"'
+        }
+        if(arg.name=='南昌'){
+          window.location.href='http://localhost:8999/#/test/"南昌"'
+        }
+        if(arg.name=='郑州'){
+          window.location.href='http://localhost:8999/#/test/"郑州"'
+        }
+        if(arg.name=='武汉'){
+          window.location.href='http://localhost:8999/#/test/"武汉"'
+        }
+        if(arg.name=='长沙'){
+          window.location.href='http://localhost:8999/#/test/"长沙"'
+        }
+        if(arg.name=='广州'){
+          window.location.href='http://localhost:8999/#/test/"广州"'
+        }
+        if(arg.name=='南宁'){
+          window.location.href='http://localhost:8999/#/test/"南宁"'
+        }
+        if(arg.name=='海口'){
+          window.location.href='http://localhost:8999/#/test/"海口"'
+        }
+        if(arg.name=='成都'){
+          window.location.href='http://localhost:8999/#/test/"成都"'
+        }
+        if(arg.name=='贵阳'){
+          window.location.href='http://localhost:8999/#/test/"贵阳"'
+        }
+        if(arg.name=='拉萨'){
+          window.location.href='http://localhost:8999/#/test/"拉萨"'
+        }
+        if(arg.name=='兰州'){
+          window.location.href='http://localhost:8999/#/test/"兰州"'
+        }
+        if(arg.name=='西宁'){
+          window.location.href='http://localhost:8999/#/test/"西宁"'
+        }
+        if(arg.name=='银川'){
+          window.location.href='http://localhost:8999/#/test/"银川"'
+        }
+        if(arg.name=='深圳'){
+          window.location.href='http://localhost:8999/#/test/"深圳"'
+        }
+        if(arg.name=='大连'){
+          window.location.href='http://localhost:8999/#/test/"大连"'
+        }
+        if(arg.name=='宁波'){
+          window.location.href='http://localhost:8999/#/test/"宁波"'
+        }
+        if(arg.name=='青岛'){
+          window.location.href='http://localhost:8999/#/test/"青岛"'
+        }
+        if(arg.name=='厦门'){
+          window.location.href='http://localhost:8999/#/test/"厦门"'
+        }
       })
 
 
@@ -290,6 +347,39 @@ export default {
                                   },{
                                       "name": "杭州",
                                       "value": [120.153576, 30.287459]
+                                  },{ 
+                                      "name": "福州",
+                                      "value": [119.3,26.08]
+                                  },{ 
+                                      "name": "南昌",
+                                      "value": [115.892151, 28.676493]
+                                  },{ 
+                                      "name": "武汉",
+                                      "value": [114.298572, 30.584355]
+                                  },{ 
+                                      "name": "长沙",
+                                      "value": [113,28.21]
+                                  },{ 
+                                      "name": "广州",
+                                      "value": [113.280637, 23.125178]
+                                  },{ 
+                                      "name": "南宁",
+                                      "value": [108.320004,22.82402]
+                                  },{ 
+                                      "name": "海口",
+                                      "value": [110.35,20.02]
+                                  },{ 
+                                      "name": "成都",
+                                      "value": [104.065735,30.659462]
+                                  },{ 
+                                      "name": "贵阳",
+                                      "value": [106.713478, 26.578343]
+                                  },{ 
+                                      "name": "深圳",
+                                      "value": [114.085947, 22.547]
+                                  },{ 
+                                      "name": "厦门",
+                                      "value": [118.1,24.46]
                                   }
                                   
                               ]
@@ -327,6 +417,30 @@ export default {
                                   },{                                  
                                       "name": "乌鲁木齐",
                                       "value": [87.617733,43.792818]
+                                  },{ 
+                                      "name": "郑州",
+                                      "value": [113.665412,34.757975]
+                                  },{ 
+                                      "name": "拉萨",
+                                      "value": [91.132212,29.660361]
+                                  },{ 
+                                      "name": "兰州",
+                                      "value": [103.823557,36.058039]
+                                  },{ 
+                                      "name": "西宁",
+                                      "value": [101.778916, 36.623178]
+                                  },{ 
+                                      "name": "银川",
+                                      "value": [106.27,38.47]
+                                  },{ 
+                                      "name": "大连",
+                                      "value": [121.618622, 38.91459]
+                                  },{ 
+                                      "name": "宁波",
+                                      "value": [121.549792, 29.868388]
+                                  },{ 
+                                      "name": "青岛",
+                                      "value": [120.33,36.07]
                                   }
                                   
                               ]
