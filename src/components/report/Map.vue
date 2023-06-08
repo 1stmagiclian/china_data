@@ -474,7 +474,7 @@ export default {
           // 涟漪动画效果配置
           rippleEffect: {
             // 涟漪效果直径
-            scale: 10,
+            scale: 6,
             // 空心的涟漪动画效果
             brushType: 'stroke',
           },

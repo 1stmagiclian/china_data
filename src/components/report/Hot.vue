@@ -75,7 +75,7 @@ export default {
       this.chartInstance = this.$echarts.init(this.$refs.hotRef, this.theme)
 
       const initOption = {
-        backgroundColor:"rgb(22, 21, 34, 0.75)",
+        backgroundColor:"rgb(22, 21, 34, 0.9)",
         title: {
           text: '▎指标词云分析',
           left: 20,
