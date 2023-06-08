@@ -146,9 +146,9 @@ export default {
                 //     ')';
                 // }
                 color:function(params){
-                    if(params.value >0 && params.value <50){
+                    if(params.value >=300 && params.value <=400){
                       return "#a304d3";
-                    }else if(params.value >=50 && params.value<=80 ){
+                    }else if(params.value >=400 && params.value<=450 ){
                       return "#23E5E5";
                     }
                     return "#2004d3";
